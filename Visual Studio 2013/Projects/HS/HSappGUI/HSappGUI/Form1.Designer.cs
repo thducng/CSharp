@@ -93,7 +93,7 @@
             "10",
             "11",
             "12"});
-      this.comboBox2.Location = new System.Drawing.Point(50, 251);
+      this.comboBox2.Location = new System.Drawing.Point(50, 255);
       this.comboBox2.Name = "comboBox2";
       this.comboBox2.Size = new System.Drawing.Size(121, 21);
       this.comboBox2.TabIndex = 7;
@@ -117,7 +117,7 @@
       // button4
       // 
       this.button4.ForeColor = System.Drawing.Color.Black;
-      this.button4.Location = new System.Drawing.Point(71, 363);
+      this.button4.Location = new System.Drawing.Point(72, 363);
       this.button4.Name = "button4";
       this.button4.Size = new System.Drawing.Size(75, 23);
       this.button4.TabIndex = 9;
@@ -159,14 +159,13 @@
       // 
       this.comboBox4.FormattingEnabled = true;
       this.comboBox4.Items.AddRange(new object[] {
+            "Best Played Class",
+            "Class Stat",
             "Latest Game",
+            "Most Played Class",
             "Most Wins",
             "Winning Stats",
-            "Class Stat",
-            "Best Played Class",
-            "Worst Played Class",
-            "Most Played Class",
-            "My Elo"});
+            "Worst Played Class"});
       this.comboBox4.Location = new System.Drawing.Point(228, 205);
       this.comboBox4.Name = "comboBox4";
       this.comboBox4.Size = new System.Drawing.Size(121, 21);
@@ -177,7 +176,7 @@
       // button1
       // 
       this.button1.ForeColor = System.Drawing.Color.Black;
-      this.button1.Location = new System.Drawing.Point(247, 249);
+      this.button1.Location = new System.Drawing.Point(247, 253);
       this.button1.Name = "button1";
       this.button1.Size = new System.Drawing.Size(75, 23);
       this.button1.TabIndex = 14;
@@ -202,7 +201,7 @@
       // button2
       // 
       this.button2.ForeColor = System.Drawing.Color.Black;
-      this.button2.Location = new System.Drawing.Point(413, 249);
+      this.button2.Location = new System.Drawing.Point(409, 253);
       this.button2.Name = "button2";
       this.button2.Size = new System.Drawing.Size(75, 23);
       this.button2.TabIndex = 17;
@@ -224,10 +223,10 @@
       // 
       this.richTextBox1.BackColor = System.Drawing.Color.Black;
       this.richTextBox1.ForeColor = System.Drawing.Color.White;
-      this.richTextBox1.Location = new System.Drawing.Point(104, 425);
+      this.richTextBox1.Location = new System.Drawing.Point(87, 425);
       this.richTextBox1.Name = "richTextBox1";
       this.richTextBox1.ReadOnly = true;
-      this.richTextBox1.Size = new System.Drawing.Size(245, 125);
+      this.richTextBox1.Size = new System.Drawing.Size(250, 125);
       this.richTextBox1.TabIndex = 19;
       this.richTextBox1.Text = "";
       this.richTextBox1.TextChanged += new System.EventHandler(this.preOutput_Box);
@@ -236,10 +235,10 @@
       // 
       this.richTextBox2.BackColor = System.Drawing.Color.Black;
       this.richTextBox2.ForeColor = System.Drawing.Color.White;
-      this.richTextBox2.Location = new System.Drawing.Point(345, 425);
+      this.richTextBox2.Location = new System.Drawing.Point(334, 425);
       this.richTextBox2.Name = "richTextBox2";
       this.richTextBox2.ReadOnly = true;
-      this.richTextBox2.Size = new System.Drawing.Size(426, 125);
+      this.richTextBox2.Size = new System.Drawing.Size(460, 125);
       this.richTextBox2.TabIndex = 20;
       this.richTextBox2.Text = "";
       this.richTextBox2.TextChanged += new System.EventHandler(this.Output_Box);
@@ -269,7 +268,7 @@
       this.pictureBox7.Image = global::HSappGUI.Properties.Resources._1423255006_tux1;
       this.pictureBox7.Location = new System.Drawing.Point(1, 12);
       this.pictureBox7.Name = "pictureBox7";
-      this.pictureBox7.Size = new System.Drawing.Size(139, 124);
+      this.pictureBox7.Size = new System.Drawing.Size(146, 124);
       this.pictureBox7.TabIndex = 23;
       this.pictureBox7.TabStop = false;
       // 
