@@ -191,7 +191,7 @@
             "Delete Run",
             "Recover Run",
             "Change File"});
-      this.comboBox5.Location = new System.Drawing.Point(389, 205);
+      this.comboBox5.Location = new System.Drawing.Point(394, 205);
       this.comboBox5.Name = "comboBox5";
       this.comboBox5.Size = new System.Drawing.Size(121, 21);
       this.comboBox5.TabIndex = 16;
@@ -201,7 +201,7 @@
       // button2
       // 
       this.button2.ForeColor = System.Drawing.Color.Black;
-      this.button2.Location = new System.Drawing.Point(409, 253);
+      this.button2.Location = new System.Drawing.Point(415, 253);
       this.button2.Name = "button2";
       this.button2.Size = new System.Drawing.Size(75, 23);
       this.button2.TabIndex = 17;
@@ -215,7 +215,7 @@
       this.pictureBox5.Image = global::HSappGUI.Properties.Resources.cooltext1909731317;
       this.pictureBox5.Location = new System.Drawing.Point(389, 134);
       this.pictureBox5.Name = "pictureBox5";
-      this.pictureBox5.Size = new System.Drawing.Size(131, 34);
+      this.pictureBox5.Size = new System.Drawing.Size(136, 34);
       this.pictureBox5.TabIndex = 18;
       this.pictureBox5.TabStop = false;
       // 
@@ -297,7 +297,9 @@
       this.Controls.Add(this.pictureBox6);
       this.Controls.Add(this.pictureBox3);
       this.ForeColor = System.Drawing.SystemColors.Control;
+      this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+      this.MaximizeBox = false;
       this.Name = "HSv3";
       this.Text = "HS Arena";
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

@@ -24,22 +24,13 @@ namespace HSappGUI
       InitializeComponent();
 
       richTextBox1.Text = "Matches Played :      " + "\n" +
-              "Arena Runs:           " + "\n" + "\n" +
-              "Won Games :           " + "\n" +
-              "Lost Games :          " + "\n" +
-              "Win Percentage :      " + "\n" + "\n" +
-              "Current Elo :         " + "\n" +
-              "Highest Elo Reached : ";
+                          "Arena Runs:           " + "\n" + "\n" +
+                          "Won Games :           " + "\n" +
+                          "Lost Games :          " + "\n" +
+                          "Win Percentage :      " + "\n" + "\n" +
+                          "Current Elo :         " + "\n" +
+                          "Highest Elo Reached : ";
 
-      richTextBox2.Text = " Mage " + "\n" +
-                           "\n" +
-                           " 1 ~  Wins -     7      Loss -     3" + "\n" + "\n" +
-                           " 2 ~  Wins -    11     Loss -     3" + "\n" + "\n" +
-                           " 3 ~  Wins -     2      Loss -     3" + "\n" + "\n" +
-                           " 4 ~  Wins -     9      Loss -     3" + "\n" + "\n" +
-                           " 5 ~  Wins -     7      Loss -     3" + "\n" + "\n" +
-                           " 6 ~  Wins -     2      Loss -     3" + "\n" + "\n" +
-                           " 7 ~  Wins -     2      Loss -     3";
       string barcode = "";
       int frm = 0;
       int to = 10;

@@ -163,6 +163,16 @@ namespace HSappGUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap cooltext1911603212 {
+            get {
+                object obj = ResourceManager.GetObject("cooltext1911603212", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Hearthlogo {
             get {
                 object obj = ResourceManager.GetObject("Hearthlogo", resourceCulture);
