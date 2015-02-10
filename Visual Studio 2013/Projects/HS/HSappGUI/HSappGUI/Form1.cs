@@ -92,8 +92,20 @@ namespace HSappGUI
     private void Button_Stats(object sender, EventArgs e)
     {
       string var;
+      string[] stats = System.IO.File.ReadAllLines(@"D:\Uni\P2\CSharp\Visual Studio 2013\Projects\HS\Stats.txt");
       var = statChoice;
-      MessageBox.Show(var);
+
+      if (var == "Most Played Class")
+      {
+      ArrayList arr = new ArrayList();
+      richTextBox2.Text = " Mage " + Environment.NewLine;
+
+      foreach (string lines in stats)
+      {
+        richTextBox2.Text += Environment.NewLine + lines + Environment.NewLine;
+      }
+
+      }
     }
 
     private void Output_Box(object sender, EventArgs e)
