@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication1
+﻿namespace ConverterV3V4
 {
   partial class Converter
   {
