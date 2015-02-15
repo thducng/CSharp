@@ -1,6 +1,6 @@
-﻿namespace HSappGUI
+﻿namespace HSv4
 {
-  partial class HSv3
+  partial class HSv4
   {
     /// <summary>
     /// Required designer variable.
@@ -28,18 +28,18 @@
     /// </summary>
     private void InitializeComponent()
     {
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HSv3));
-      this.comboBox1 = new System.Windows.Forms.ComboBox();
-      this.comboBox2 = new System.Windows.Forms.ComboBox();
-      this.comboBox3 = new System.Windows.Forms.ComboBox();
-      this.button4 = new System.Windows.Forms.Button();
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HSv4));
+      this.classBox = new System.Windows.Forms.ComboBox();
+      this.winBox = new System.Windows.Forms.ComboBox();
+      this.LossBox = new System.Windows.Forms.ComboBox();
+      this.arenaButton = new System.Windows.Forms.Button();
       this.pictureBox2 = new System.Windows.Forms.PictureBox();
       this.pictureBox3 = new System.Windows.Forms.PictureBox();
       this.pictureBox4 = new System.Windows.Forms.PictureBox();
-      this.comboBox4 = new System.Windows.Forms.ComboBox();
-      this.button1 = new System.Windows.Forms.Button();
-      this.comboBox5 = new System.Windows.Forms.ComboBox();
-      this.button2 = new System.Windows.Forms.Button();
+      this.statBox = new System.Windows.Forms.ComboBox();
+      this.statButton = new System.Windows.Forms.Button();
+      this.manageBox = new System.Windows.Forms.ComboBox();
+      this.manageButton = new System.Windows.Forms.Button();
       this.pictureBox5 = new System.Windows.Forms.PictureBox();
       this.richTextBox1 = new System.Windows.Forms.RichTextBox();
       this.richTextBox2 = new System.Windows.Forms.RichTextBox();
@@ -55,11 +55,11 @@
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
       this.SuspendLayout();
       // 
-      // comboBox1
+      // classBox
       // 
-      this.comboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-      this.comboBox1.FormattingEnabled = true;
-      this.comboBox1.Items.AddRange(new object[] {
+      this.classBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+      this.classBox.FormattingEnabled = true;
+      this.classBox.Items.AddRange(new object[] {
             "Druid",
             "Hunter",
             "Mage",
@@ -69,18 +69,19 @@
             "Shaman",
             "Warlock",
             "Warrior"});
-      this.comboBox1.Location = new System.Drawing.Point(50, 205);
-      this.comboBox1.Name = "comboBox1";
-      this.comboBox1.Size = new System.Drawing.Size(121, 21);
-      this.comboBox1.TabIndex = 6;
-      this.comboBox1.Text = "Class";
-      this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.combo_Box_Class);
+      this.classBox.Location = new System.Drawing.Point(50, 205);
+      this.classBox.Name = "classBox";
+      this.classBox.Size = new System.Drawing.Size(121, 21);
+      this.classBox.TabIndex = 6;
+      this.classBox.Text = "Class";
+      this.classBox.SelectedIndexChanged += new System.EventHandler(this.combo_Box_Class);
       // 
-      // comboBox2
+      // winBox
       // 
-      this.comboBox2.ForeColor = System.Drawing.Color.Black;
-      this.comboBox2.FormattingEnabled = true;
-      this.comboBox2.Items.AddRange(new object[] {
+      this.winBox.ForeColor = System.Drawing.Color.Black;
+      this.winBox.FormattingEnabled = true;
+      this.winBox.Items.AddRange(new object[] {
+            "0",
             "1",
             "2",
             "3",
@@ -93,42 +94,43 @@
             "10",
             "11",
             "12"});
-      this.comboBox2.Location = new System.Drawing.Point(50, 255);
-      this.comboBox2.Name = "comboBox2";
-      this.comboBox2.Size = new System.Drawing.Size(121, 21);
-      this.comboBox2.TabIndex = 7;
-      this.comboBox2.Text = "Wins";
-      this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.combo_Box_Win);
+      this.winBox.Location = new System.Drawing.Point(50, 255);
+      this.winBox.Name = "winBox";
+      this.winBox.Size = new System.Drawing.Size(121, 21);
+      this.winBox.TabIndex = 7;
+      this.winBox.Text = "Wins";
+      this.winBox.SelectedIndexChanged += new System.EventHandler(this.combo_Box_Win);
       // 
-      // comboBox3
+      // LossBox
       // 
-      this.comboBox3.FormattingEnabled = true;
-      this.comboBox3.Items.AddRange(new object[] {
+      this.LossBox.FormattingEnabled = true;
+      this.LossBox.Items.AddRange(new object[] {
+            "0",
             "1",
             "2",
             "3"});
-      this.comboBox3.Location = new System.Drawing.Point(50, 307);
-      this.comboBox3.Name = "comboBox3";
-      this.comboBox3.Size = new System.Drawing.Size(121, 21);
-      this.comboBox3.TabIndex = 8;
-      this.comboBox3.Text = "Losses";
-      this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.combo_Box_Losses);
+      this.LossBox.Location = new System.Drawing.Point(50, 307);
+      this.LossBox.Name = "LossBox";
+      this.LossBox.Size = new System.Drawing.Size(121, 21);
+      this.LossBox.TabIndex = 8;
+      this.LossBox.Text = "Losses";
+      this.LossBox.SelectedIndexChanged += new System.EventHandler(this.combo_Box_Losses);
       // 
-      // button4
+      // arenaButton
       // 
-      this.button4.ForeColor = System.Drawing.Color.Black;
-      this.button4.Location = new System.Drawing.Point(72, 363);
-      this.button4.Name = "button4";
-      this.button4.Size = new System.Drawing.Size(75, 23);
-      this.button4.TabIndex = 9;
-      this.button4.Text = "Add Arena";
-      this.button4.UseVisualStyleBackColor = true;
-      this.button4.Click += new System.EventHandler(this.Button_Add_Arena);
+      this.arenaButton.ForeColor = System.Drawing.Color.Black;
+      this.arenaButton.Location = new System.Drawing.Point(72, 363);
+      this.arenaButton.Name = "arenaButton";
+      this.arenaButton.Size = new System.Drawing.Size(75, 23);
+      this.arenaButton.TabIndex = 9;
+      this.arenaButton.Text = "Add Arena";
+      this.arenaButton.UseVisualStyleBackColor = true;
+      this.arenaButton.Click += new System.EventHandler(this.Button_Add_Arena);
       // 
       // pictureBox2
       // 
       this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-      this.pictureBox2.Image = global::HSappGUI.Properties.Resources.cooltext1909678512;
+      this.pictureBox2.Image = global::HSv4.Properties.Resources.cooltext1909678512;
       this.pictureBox2.Location = new System.Drawing.Point(247, 323);
       this.pictureBox2.Name = "pictureBox2";
       this.pictureBox2.Size = new System.Drawing.Size(252, 63);
@@ -138,7 +140,7 @@
       // pictureBox3
       // 
       this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-      this.pictureBox3.Image = global::HSappGUI.Properties.Resources.cooltext1909677615;
+      this.pictureBox3.Image = global::HSv4.Properties.Resources.cooltext1909677615;
       this.pictureBox3.Location = new System.Drawing.Point(47, 134);
       this.pictureBox3.Name = "pictureBox3";
       this.pictureBox3.Size = new System.Drawing.Size(124, 46);
@@ -148,17 +150,17 @@
       // pictureBox4
       // 
       this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
-      this.pictureBox4.Image = global::HSappGUI.Properties.Resources.cooltext1909678888;
+      this.pictureBox4.Image = global::HSv4.Properties.Resources.cooltext1909678888;
       this.pictureBox4.Location = new System.Drawing.Point(236, 134);
       this.pictureBox4.Name = "pictureBox4";
       this.pictureBox4.Size = new System.Drawing.Size(113, 41);
       this.pictureBox4.TabIndex = 12;
       this.pictureBox4.TabStop = false;
       // 
-      // comboBox4
+      // statBox
       // 
-      this.comboBox4.FormattingEnabled = true;
-      this.comboBox4.Items.AddRange(new object[] {
+      this.statBox.FormattingEnabled = true;
+      this.statBox.Items.AddRange(new object[] {
             "Best Played Class",
             "Class Stat",
             "Latest Game",
@@ -166,53 +168,52 @@
             "Most Wins",
             "Winning Stats",
             "Worst Played Class"});
-      this.comboBox4.Location = new System.Drawing.Point(228, 205);
-      this.comboBox4.Name = "comboBox4";
-      this.comboBox4.Size = new System.Drawing.Size(121, 21);
-      this.comboBox4.TabIndex = 13;
-      this.comboBox4.Text = "Stats";
-      this.comboBox4.SelectedIndexChanged += new System.EventHandler(this.combo_Box_Stats);
+      this.statBox.Location = new System.Drawing.Point(228, 205);
+      this.statBox.Name = "statBox";
+      this.statBox.Size = new System.Drawing.Size(121, 21);
+      this.statBox.TabIndex = 13;
+      this.statBox.Text = "Stats";
+      this.statBox.SelectedIndexChanged += new System.EventHandler(this.combo_Box_Stats);
       // 
-      // button1
+      // statButton
       // 
-      this.button1.ForeColor = System.Drawing.Color.Black;
-      this.button1.Location = new System.Drawing.Point(247, 253);
-      this.button1.Name = "button1";
-      this.button1.Size = new System.Drawing.Size(75, 23);
-      this.button1.TabIndex = 14;
-      this.button1.Text = "See Stats";
-      this.button1.UseVisualStyleBackColor = true;
-      this.button1.Click += new System.EventHandler(this.Button_Stats);
+      this.statButton.ForeColor = System.Drawing.Color.Black;
+      this.statButton.Location = new System.Drawing.Point(247, 253);
+      this.statButton.Name = "statButton";
+      this.statButton.Size = new System.Drawing.Size(75, 23);
+      this.statButton.TabIndex = 14;
+      this.statButton.Text = "See Stats";
+      this.statButton.UseVisualStyleBackColor = true;
+      this.statButton.Click += new System.EventHandler(this.Button_Stats);
       // 
-      // comboBox5
+      // manageBox
       // 
-      this.comboBox5.FormattingEnabled = true;
-      this.comboBox5.Items.AddRange(new object[] {
+      this.manageBox.FormattingEnabled = true;
+      this.manageBox.Items.AddRange(new object[] {
             "Delete Run",
-            "Recover Run",
-            "Change File"});
-      this.comboBox5.Location = new System.Drawing.Point(394, 205);
-      this.comboBox5.Name = "comboBox5";
-      this.comboBox5.Size = new System.Drawing.Size(121, 21);
-      this.comboBox5.TabIndex = 16;
-      this.comboBox5.Text = "Manage";
-      this.comboBox5.SelectedIndexChanged += new System.EventHandler(this.combo_Box_Manage);
+            "Recover Run"});
+      this.manageBox.Location = new System.Drawing.Point(394, 205);
+      this.manageBox.Name = "manageBox";
+      this.manageBox.Size = new System.Drawing.Size(121, 21);
+      this.manageBox.TabIndex = 16;
+      this.manageBox.Text = "Manage";
+      this.manageBox.SelectedIndexChanged += new System.EventHandler(this.combo_Box_Manage);
       // 
-      // button2
+      // manageButton
       // 
-      this.button2.ForeColor = System.Drawing.Color.Black;
-      this.button2.Location = new System.Drawing.Point(415, 253);
-      this.button2.Name = "button2";
-      this.button2.Size = new System.Drawing.Size(75, 23);
-      this.button2.TabIndex = 17;
-      this.button2.Text = "Manage";
-      this.button2.UseVisualStyleBackColor = true;
-      this.button2.Click += new System.EventHandler(this.Button_Manage);
+      this.manageButton.ForeColor = System.Drawing.Color.Black;
+      this.manageButton.Location = new System.Drawing.Point(415, 253);
+      this.manageButton.Name = "manageButton";
+      this.manageButton.Size = new System.Drawing.Size(75, 23);
+      this.manageButton.TabIndex = 17;
+      this.manageButton.Text = "Manage";
+      this.manageButton.UseVisualStyleBackColor = true;
+      this.manageButton.Click += new System.EventHandler(this.Button_Manage);
       // 
       // pictureBox5
       // 
       this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
-      this.pictureBox5.Image = global::HSappGUI.Properties.Resources.cooltext1909731317;
+      this.pictureBox5.Image = global::HSv4.Properties.Resources.cooltext1909731317;
       this.pictureBox5.Location = new System.Drawing.Point(389, 134);
       this.pictureBox5.Name = "pictureBox5";
       this.pictureBox5.Size = new System.Drawing.Size(136, 34);
@@ -246,7 +247,7 @@
       // pictureBox1
       // 
       this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-      this.pictureBox1.Image = global::HSappGUI.Properties.Resources.cooltext1909988044;
+      this.pictureBox1.Image = global::HSv4.Properties.Resources.cooltext1909988044;
       this.pictureBox1.Location = new System.Drawing.Point(130, 29);
       this.pictureBox1.Name = "pictureBox1";
       this.pictureBox1.Size = new System.Drawing.Size(453, 77);
@@ -265,18 +266,18 @@
       // pictureBox7
       // 
       this.pictureBox7.BackColor = System.Drawing.Color.Transparent;
-      this.pictureBox7.Image = global::HSappGUI.Properties.Resources._1423255006_tux1;
+      this.pictureBox7.Image = global::HSv4.Properties.Resources._1423255006_tux1;
       this.pictureBox7.Location = new System.Drawing.Point(1, 12);
       this.pictureBox7.Name = "pictureBox7";
       this.pictureBox7.Size = new System.Drawing.Size(146, 124);
       this.pictureBox7.TabIndex = 23;
       this.pictureBox7.TabStop = false;
       // 
-      // HSv3
+      // HSv4
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.BackgroundImage = global::HSappGUI.Properties.Resources.http___wall_anonforge_com_wp_content_uploads_Anime_TokyoGhoul_c_ken_kaneki_mask_white_hair_tokyo_ghoul_1920x1080;
+      this.BackgroundImage = global::HSv4.Properties.Resources.http___wall_anonforge_com_wp_content_uploads_Anime_TokyoGhoul_c_ken_kaneki_mask_white_hair_tokyo_ghoul_1920x1080;
       this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
       this.ClientSize = new System.Drawing.Size(884, 572);
       this.Controls.Add(this.richTextBox2);
@@ -284,24 +285,24 @@
       this.Controls.Add(this.richTextBox1);
       this.Controls.Add(this.pictureBox7);
       this.Controls.Add(this.pictureBox5);
-      this.Controls.Add(this.button2);
-      this.Controls.Add(this.comboBox5);
-      this.Controls.Add(this.button1);
-      this.Controls.Add(this.comboBox4);
+      this.Controls.Add(this.manageButton);
+      this.Controls.Add(this.manageBox);
+      this.Controls.Add(this.statButton);
+      this.Controls.Add(this.statBox);
       this.Controls.Add(this.pictureBox4);
       this.Controls.Add(this.pictureBox2);
-      this.Controls.Add(this.button4);
-      this.Controls.Add(this.comboBox3);
-      this.Controls.Add(this.comboBox2);
-      this.Controls.Add(this.comboBox1);
+      this.Controls.Add(this.arenaButton);
+      this.Controls.Add(this.LossBox);
+      this.Controls.Add(this.winBox);
+      this.Controls.Add(this.classBox);
       this.Controls.Add(this.pictureBox6);
       this.Controls.Add(this.pictureBox3);
       this.ForeColor = System.Drawing.SystemColors.Control;
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.MaximizeBox = false;
-      this.Name = "HSv3";
-      this.Text = "HS Arena";
+      this.Name = "HSv4";
+      this.Text = "HSv4";
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
@@ -315,17 +316,17 @@
 
     #endregion
 
-    private System.Windows.Forms.ComboBox comboBox1;
-    private System.Windows.Forms.ComboBox comboBox2;
-    private System.Windows.Forms.ComboBox comboBox3;
-    private System.Windows.Forms.Button button4;
+    private System.Windows.Forms.ComboBox classBox;
+    private System.Windows.Forms.ComboBox winBox;
+    private System.Windows.Forms.ComboBox LossBox;
+    private System.Windows.Forms.Button arenaButton;
     private System.Windows.Forms.PictureBox pictureBox2;
     private System.Windows.Forms.PictureBox pictureBox3;
     private System.Windows.Forms.PictureBox pictureBox4;
-    private System.Windows.Forms.ComboBox comboBox4;
-    private System.Windows.Forms.Button button1;
-    private System.Windows.Forms.ComboBox comboBox5;
-    private System.Windows.Forms.Button button2;
+    private System.Windows.Forms.ComboBox statBox;
+    private System.Windows.Forms.Button statButton;
+    private System.Windows.Forms.ComboBox manageBox;
+    private System.Windows.Forms.Button manageButton;
     private System.Windows.Forms.PictureBox pictureBox5;
     private System.Windows.Forms.RichTextBox richTextBox1;
     private System.Windows.Forms.RichTextBox richTextBox2;

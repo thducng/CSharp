@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace HSappGUI
+namespace HSv4
 {
   static class Program
   {
@@ -17,7 +17,7 @@ namespace HSappGUI
     {
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
-      Application.Run(new HSv3());
+      Application.Run(new HSv4());
     }
   }
 }

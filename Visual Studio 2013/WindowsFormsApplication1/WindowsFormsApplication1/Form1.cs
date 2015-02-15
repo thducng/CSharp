@@ -11,14 +11,32 @@ using System.Text.RegularExpressions;
 
 namespace WindowsFormsApplication1
 {
-  public partial class Form1 : Form
+  public partial class Converter : Form
   {
-    public Form1()
+    public Converter()
     {
       InitializeComponent();
     }
 
+    #region App Events
     private void button_Convert(object sender, EventArgs e)
+    {
+      convertStat();
+    }
+
+    private void richTextBox1_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void richTextBox2_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+    #endregion
+
+    #region Functions For Apps
+    private void convertStat()
     {
       string stats = System.IO.File.ReadAllText(@"D:\Uni\P2\CSharp\Visual Studio 2013\Projects\HS\Stats.txt");
       string[] statsArray = stats.Split(' ');
@@ -37,34 +55,34 @@ namespace WindowsFormsApplication1
           switch (i)
           {
             case 1:
-              className = "Druid       ";
+              className = "Druid";
               break;
             case 2:
-              className = "Hunter     ";
+              className = "Hunter";
               break;
             case 3:
-              className = "Mage      ";
+              className = "Mage";
               break;
             case 4:
-              className = "Paladin    ";
+              className = "Paladin";
               break;
             case 5:
-              className = "Priest       ";
+              className = "Priest";
               break;
             case 6:
-              className = "Rogue     ";
+              className = "Rogue";
               break;
             case 7:
-              className = "Shaman  ";
+              className = "Shaman";
               break;
             case 8:
-              className = "Warlock  ";
+              className = "Warlock";
               break;
             case 9:
-              className = "Warrior    ";
+              className = "Warrior";
               break;
             default:
-              className = "Failed     ";
+              className = "Failed";
               break;
           }
           j = 2;
@@ -85,21 +103,22 @@ namespace WindowsFormsApplication1
           {
             if (win > 9)
             {
-              l.Add(className + " with " + win + " wins and  " + loss + " losses ");
+              l.Add(className + " " + win + " " + loss + " ");
             }
-            else if(win > 1)
-            { 
-              l.Add(className + " with   " + win + " wins and  " + loss + " losses "); 
+            else if (win > 1)
+            {
+              l.Add(className + " " + win + " " + loss + "");
             }
             else
             {
-              l.Add(className + " with   " + win + " win and  " + loss + " losses ");
+              l.Add(className + " " + win + " " + loss + "");
             }
             j = 1;
+            k++;
           }
           else
           {
-            l.Add("This run is deleted");
+            l.Add("Deleted");
             j = 1;
           }
         }
@@ -109,50 +128,14 @@ namespace WindowsFormsApplication1
 
       foreach (string s in l)
       {
-        richTextBox3.Text += s + "\n";
+        richTextBox2.Text += s + "\n";
       }
-      win = 0;
-      loss = 0;
-      int matches = 0;
-      float winp = 0;
-      foreach (string s in l)
-      {
-        if(s.Contains("Mage"))
-        {
-          string pattern = @"[0-9]+";
 
-          Match m = Regex.Match(s, pattern);
-          win += Convert.ToInt32(m.Value);
-          m = m.NextMatch();
-          loss += Convert.ToInt32(m.Value);
-
-          richTextBox2.Text += s + "\n";
-        }
-      }
-      winp = ((float)win / ((float)win + (float)loss)) * 100;
-      matches = win + loss;
-      richTextBox2.Text += "\nTotal is "+ win + " wins and " + loss + " losses\n";
-      richTextBox2.Text += "\nTotal matches is " + matches + " \n" + "Win percentage of " + winp.ToString("N") + " %\n";
+      System.IO.File.WriteAllLines(@"newStat.txt", l);
+      richTextBox1.Text = "All Runs Converted Succesfully";
     }
-
-    private void richTextBox1_TextChanged(object sender, EventArgs e)
-    {
-
-    }
-
-    private void richTextBox2_TextChanged(object sender, EventArgs e)
-    {
-
-    }
-
-    private void richTextBox3_TextChanged(object sender, EventArgs e)
-    {
-
-    }
-
-    private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-    {
-
-    }
+    #endregion
+ 
+    // End of Program :)
   }
 }
