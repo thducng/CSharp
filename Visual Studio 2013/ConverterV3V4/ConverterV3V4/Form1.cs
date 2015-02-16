@@ -38,7 +38,7 @@ namespace ConverterV3V4
     #region Functions For Apps
     private void convertStat()
     {
-      string stats = System.IO.File.ReadAllText(@"D:\Uni\P2\CSharp\Visual Studio 2013\Projects\HS\Stats.txt");
+      string stats = System.IO.File.ReadAllText(@"Stats.txt");
       string[] statsArray = stats.Split(' ');
       List<string> l = new List<string>();
       string className = "";
