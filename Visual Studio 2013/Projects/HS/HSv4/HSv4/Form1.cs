@@ -145,7 +145,7 @@ namespace HSv4
 
     private void eloCalculator(out int eloOut, out int heloOut)
     {
-      int win = 0, loss = 0, runs = 0, elo = 1500, helo = 0;
+      int win = 0, loss = 0, elo = 1500, helo = 0;
       int calc = 0;
 
       fileChecker();
@@ -162,16 +162,7 @@ namespace HSv4
         calc = (win - loss) * 10;
         if (elo < 1400)
         {
-          if (calc > 35)
-          {
-            elo += 35;
-          }
-          else if (calc < -5)
-          {
-            elo += -5;
-          }
-          else
-            elo += calc;
+          maxMinEloCalc(1, calc);
         }
         else if (elo >= 1400 && elo < 1500)
         {
@@ -256,6 +247,57 @@ namespace HSv4
       heloOut = helo;
     }
 
+    private int maxMinEloCalc(int x, int calc)
+    {
+      switch (x)
+      {
+        case 1:
+          if (calc > 35)
+            return 35;
+          else if (calc < -5)
+            return -5;
+          else
+            return calc;
+        case 2:
+          if (calc > 25)
+            return 25;
+          else if (calc < -10)
+            return -10;
+          else
+            return calc;
+        case 3:
+          if (calc > 20)
+            return -20;
+          else if (calc < -10)
+            return -10;
+          else
+            return calc;
+        case 4:
+          if (calc > 15)
+            return 15;
+          else if (calc < -5)
+            return -5;
+          else
+            return calc;
+        case 5:
+          if (calc > 10)
+            return 10;
+          else if (calc < -5)
+            return -5;
+          else
+            return calc;
+        case 6:
+          if (calc > 7)
+            return 7;
+          else if (calc < -10)
+            return -10;
+          else
+            return calc;
+        default:
+          return 0;
+      }
+    }
+
     private void fileChecker()
     {
       if (!File.Exists("newStat.txt"))
@@ -302,6 +344,9 @@ namespace HSv4
 
     private bool runChecker(out string reason)
     {
+      bool stop = false;
+      int i = 0;
+      reason = "";
       switch (classBox.Text)
       {
         case "Druid":
@@ -315,22 +360,71 @@ namespace HSv4
         case "Warrior":
           break;
         default:
-          reason = " ";
-          return false;
+          reason += "You haven't chosen one of the nine classes\n";
+          stop = true;
+          break;
       }
-      if (Convert.ToInt32(winBox.Text) == 12 && Convert.ToInt32(LossBox.Text) == 3)
+      if(winBox.Text == @"[0-9]+")
       {
-        reason = "3 loss cannot happen when you achieve 12 wins";
-        return false;
-      }
-      else if (Convert.ToInt32(winBox.Text) < 12 && Convert.ToInt32(LossBox.Text) < 3)
-      {
-        reason = "When having less than 12 wins, you have to lose 3 times";
-        return false;
+        if (Convert.ToInt32(winBox.Text) < 0)
+        {
+          reason += "It is not possible to have less than 0 wins in arena\n";
+          stop = true;
+        }
+        if (Convert.ToInt32(winBox.Text) > 12)
+        {
+          reason += "It is not possible to earn more than 12 wins in arena\n";
+          stop = true;
+        }
       }
       else
-        reason = " ";
+      {
+        reason += "You haven't chosen you achieved wins";
+        stop = true;
+        i++;
+      }
+      if (LossBox.Text == @"[0-9]+")
+      {
+        if (Convert.ToInt32(LossBox.Text) > 3)
+        {
+          reason += "It is not possbile to lose more than 3 times in arena\n";
+          stop = true;
+        }
+        if (Convert.ToInt32(LossBox.Text) < 0)
+        {
+          reason += "It is not possible to have less than 0 losses in arena\n";
+          stop = true;
+        }
+      }
+      else
+      {
+        reason += "You haven't chosen your lost match";
+        stop = true;
+        i++;
+      }
+      if (i == 0)
+      {
+        if (Convert.ToInt32(winBox.Text) == 12 && Convert.ToInt32(LossBox.Text) == 3)
+        {
+          reason += "3 losses cannot happen when you achieve 12 wins\n";
+          stop = true;
+        }
+        if (Convert.ToInt32(winBox.Text) < 12 && Convert.ToInt32(LossBox.Text) < 3)
+        {
+          reason += "When having less than 12 wins, you have to lose 3 times\n";
+          stop = true;
+        }
+      }
+      if (stop == false)
+      {
+        reason = "";
         return true;
+      }
+      else
+      {
+        reason += "\n";
+        return false;
+      }
     }
     #endregion
 
