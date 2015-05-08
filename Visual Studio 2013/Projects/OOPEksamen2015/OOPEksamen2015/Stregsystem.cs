@@ -10,42 +10,82 @@ namespace OOPEksamen2015
 
     #region IStregsystem Members
 
-    public void BuyProduct()
+    public bool BuyProduct(User user, Product product)
     {
-      throw new NotImplementedException();
+      BuyTransaction newTransaction = new BuyTransaction();
+      newTransaction.User = user;
+      newTransaction.Product = product;
+
+      try
+      {
+        ExecuteTransaction(newTransaction);
+        if (newTransaction.User.isLowBalance())
+        {
+          return false; // Hvis denne metode retunere false = low balance, but successful
+        }
+        return true; // Hvis denne metode retunere true = succesful
+      }
+      catch (InsufficientCreditsException)
+      {
+        throw new InsufficientCreditsException(); // hvis denne exception bliver kastet, unsuccessful
+      }
     }
 
-    public void AddCreditsToAccount()
+    public void AddCreditsToAccount(User user, int amount)
     {
-      throw new NotImplementedException();
+      InsertCashTransaction newTransaction = new InsertCashTransaction();
+      newTransaction.User = user;
+      newTransaction.Amount = amount;
+
+      ExecuteTransaction(newTransaction);
     }
 
-    public void ExecuteTransaction()
+    public void ExecuteTransaction(Transaction transaction)
     {
-      throw new NotImplementedException();
+      try
+      {
+        transaction.Execute();
+      }
+      catch (InsufficientCreditsException)
+      {
+        throw new InsufficientCreditsException();
+      }
     }
 
-    public void GetProduct()
+    public Product GetProduct(string command)
     {
-      throw new NotImplementedException();
+      ProductCatalog productCatalog = new ProductCatalog();
+      Product product = new Product();
+      int productID = 0;
+
+      if(BuyProductValidation(command, out productID))
+      {
+        foreach (Product _product in productCatalog.GetList())
+        {
+          if (_product.ProductID == productID && _product.Active)
+          {
+            return _product;
+          }
+        }
+      }
+
+      throw new System.ArgumentException("The entered productID is inactive or not in the product catalog");
     }
 
     public List<User> GetUserList()
     {
-      Users userList = new Users();
+      UsersList userList = new UsersList();
 
       return userList.GetList();
     }
 
-    public User GetUser(string username)
+    public User GetUser(string command)
     {
-      List<User> userList = new List<User>();
-      Users users = new Users();
+      UsersList usersList = new UsersList();
       User user = new User();
+      string username = GetUsername(command);
 
-      userList = users.GetList();
-
-      foreach (User _user in userList)
+      foreach (User _user in usersList.GetList())
       {
         if (_user.Username == username)
         {
@@ -56,14 +96,14 @@ namespace OOPEksamen2015
       throw new System.ArgumentException("The entered username, is not in the databse of usernames");
     }
 
-    public void GetTransactionList()
+    public List<Transaction> GetTransactionList()
     {
       throw new NotImplementedException();
     }
 
     public bool CreateNewUser(User newUser)
     {
-      Users users = new Users();
+      UsersList users = new UsersList();
       newUser.UserID = users.NewUserID(newUser);
 
       return users.AddNewUser(newUser);
@@ -74,12 +114,37 @@ namespace OOPEksamen2015
       List<Product> activeProducts = new List<Product>();
       ProductCatalog productCatalog = new ProductCatalog();
 
-      activeProducts = productCatalog.GetList();
+      foreach(Product product in productCatalog.GetList())
+      {
+        if (product.Active)
+        {
+          activeProducts.Add(product);
+        }
+      }
 
       return activeProducts;
     }
 
     #endregion
-  
+
+    private bool BuyProductValidation(string command, out int productID)
+    {
+      string[] commandSplit = command.Split(' ');
+
+      if (int.TryParse(commandSplit[commandSplit.Length - 1], out productID))
+      {
+        return true;
+      }
+      return false;
+    }
+
+    private string GetUsername(string command)
+    {
+      string[] commandSplit = command.Split(' ');
+
+      return commandSplit[0];
+    }
+
+
   }
 }

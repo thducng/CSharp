@@ -16,39 +16,27 @@ namespace OOPEksamen2015
       cli.Start(parser);
     }
 
-    public void tempUI()
-    {
-      string username, firstname, lastname, information;
-      bool done = false;
-
-      Console.WriteLine("Please write new account information:");
-      Console.Write("Username: ");
-      username = Console.ReadLine();
-      Console.Write("Firstname: ");
-      firstname = Console.ReadLine();
-      Console.Write("Lastname: ");
-      lastname = Console.ReadLine();
-      User newUser = new User();
-
-      Console.WriteLine("\nBelow is not required, but can be useful at times,\nwrite the number and your information: \n");
-      Console.WriteLine("1 - Email: example@domain.com \n2 - Birthday: 24/12/2014\n");
-      Console.Write("You can choose to enter information, or write d for done: ");
-
-      do
-      {
-        information = Console.ReadLine();
-        if (!newUser.Information(information))
-        {
-          done = true;
-        }
-      } while (done == false);
+    /* TO DOS!:
+     * 
+     * Balance management: CHECK!
+     *  - Hvergang man forsøger at købe noget, kald isLowBalance i User.
+     *    - isLowBalance skal return true hvis balance er under 50 kr, return false hvis over 50kr.
+     *    - Inden man kalder isLowBalance, forsøger man først at compare product price, med user balance.
+     *    - Efter man har compare, så trækker man balancen fra.
+     *    - Her kalder man så isLowBalance, for at se status på ny balance
+     *    - Hvis denne retunere true, så skal CLI display Succes transaction OG display low balance
+     *    - Efter man har displ
+     * 
+     * Transactions:
+     *  - Transaction csv fil skal laves, og testes
+     *  - BuyTransactions skal derefter laves, og buyproduct testes.
+     *  
+     * Parser:
+     *  - 163 // Den indtager ikke exception for inactive product
+     * 
+     * 
+     */
 
 
-      newUser.Username = username;
-
-      Console.WriteLine(newUser.ToString() + " has the username " + newUser.Username);
-
-      Console.ReadKey();
-    }
   }
 }

@@ -7,13 +7,9 @@ using System.Text.RegularExpressions;
 
 namespace OOPEksamen2015
 {
-  public class Users
+  public class UsersList
   {
-
-    public Users()
-    {
-      //checkCreateUserFile();
-    }
+    private string filePath = @"logs/UsersList.csv";
 
     // inspireret af http://stackoverflow.com/questions/5282999/reading-csv-file-and-storing-values-into-an-array
     public List<User> GetList()
@@ -22,14 +18,14 @@ namespace OOPEksamen2015
       int i = 0;
 
       checkCreateUserFile();
-      var reader = new StreamReader(File.OpenRead(@"logs/Users.csv"), Encoding.UTF8);
+      var reader = new StreamReader(File.OpenRead(filePath), Encoding.UTF8);
 
       while (!reader.EndOfStream)
       {
         var line = reader.ReadLine();
         var values = line.Split(';');
 
-        // Skipping first line of the file.
+        // Skipping first line of the file. (This Part not taken from source!)
         if (i == 1)
         {
           User user = new User();
@@ -54,10 +50,43 @@ namespace OOPEksamen2015
       return userList;
     }
 
+    public bool UpdateUser(User updatedUser)
+    {
+      List<string> users = new List<string>();
+
+      checkCreateUserFile();
+      using (StreamReader reader = new StreamReader(filePath, Encoding.UTF8))
+      {
+        string user;
+
+        while ((user = reader.ReadLine()) != null)
+        {
+          if (user.Contains(";"))
+          {
+            string[] values = user.Split(';');
+
+            if (values[0] == updatedUser.UserID.ToString())
+            {
+              values[6] = updatedUser.Balance.ToString();
+              user = string.Join(";", values);
+            }
+          }
+
+          users.Add(user);
+        }
+      }
+
+      using (StreamWriter writer = new StreamWriter(filePath, false))
+      {
+        foreach (string user in users)
+          writer.WriteLine(user);
+      }
+
+      return true;
+    }
 
     public bool AddNewUser(User newUser)
     {
-      string filePath = @"logs/users.csv";
  
       string delimiter = ";";
       string[][] output = new string[][]
@@ -73,26 +102,6 @@ namespace OOPEksamen2015
       return true;
 
     }
-
-    // stort set kopieret, men har læst og forstået http://softwaretipz.com/c-sharp-code-to-create-a-csv-file-and-write-data-into-it/
-    private void checkCreateUserFile()
-    {
-      string filePath = @"logs/Users.csv";
-      if (!File.Exists(filePath))
-      {
-        File.Create(filePath).Close();
-        string delimiter = ";";
-        string[][] output = new string[][]{
-            new string[]{"UserID","Firstname","Lastname","Birthday","Username","Email","Balance"} /*add the values that you want inside a csv file. Mostly this function can be used in a foreach loop.*/
-            };
-        int length = output.GetLength(0);
-        StringBuilder sb = new StringBuilder();
-        for (int index = 0; index < length; index++)
-          sb.AppendLine(string.Join(delimiter, output[index]));
-        File.AppendAllText(filePath, sb.ToString());
-      }
-    }
-
 
     public int NewUserID(User newUser)
     {
@@ -115,6 +124,28 @@ namespace OOPEksamen2015
 
       return true;
     }
+
+    #region Private Methods
+
+    // stort set kopieret, men har læst og forstået http://softwaretipz.com/c-sharp-code-to-create-a-csv-file-and-write-data-into-it/
+    private void checkCreateUserFile()
+    {
+      if (!File.Exists(filePath))
+      {
+        File.Create(filePath).Close();
+        string delimiter = ";";
+        string[][] output = new string[][]{
+            new string[]{"UserID","Firstname","Lastname","Birthday","Username","Email","Balance"} /*add the values that you want inside a csv file. Mostly this function can be used in a foreach loop.*/
+            };
+        int length = output.GetLength(0);
+        StringBuilder sb = new StringBuilder();
+        for (int index = 0; index < length; index++)
+          sb.AppendLine(string.Join(delimiter, output[index]));
+        File.AppendAllText(filePath, sb.ToString());
+      }
+    }
+
+    #endregion
 
   }
 }

@@ -8,10 +8,7 @@ namespace OOPEksamen2015
 {
   public class ProductCatalog
   {
-    public ProductCatalog()
-    {
-
-    }
+    private string filePath = @"logs/ProductCatalog.csv";
 
     // inspireret af http://stackoverflow.com/questions/5282999/reading-csv-file-and-storing-values-into-an-array
     public List<Product> GetList()
@@ -19,7 +16,7 @@ namespace OOPEksamen2015
       List<Product> productList = new List<Product>();
       int i = 0;
 
-      var reader = new StreamReader(File.OpenRead(@"logs/productcatalog.csv"), Encoding.UTF8);
+      var reader = new StreamReader(File.OpenRead(filePath), Encoding.Default);
  
       while (!reader.EndOfStream)
       {

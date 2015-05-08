@@ -31,9 +31,9 @@ namespace OOPEksamen2015
       Console.WriteLine("{0} is not a part of this database, try again", username);
     }
 
-    public void DisplayProductNotFound()
+    public void DisplayProductNotFound(int productID)
     {
-      throw new NotImplementedException();
+      Console.WriteLine("{0} is not in the product catalog, try again", productID);
     }
 
     public void DisplayUserInfo(User user)
@@ -61,7 +61,7 @@ namespace OOPEksamen2015
 
     public void DisplayAdminCommandNotFoundMessage()
     {
-      throw new NotImplementedException();
+      Console.WriteLine("Entered admin command was invalid");
     }
 
     public void DisplayUserBuysProduct()
@@ -79,9 +79,9 @@ namespace OOPEksamen2015
       throw new NotImplementedException();
     }
 
-    public void DisplayInsufficientCash()
+    public void DisplayInsufficientCash(User user)
     {
-      throw new NotImplementedException();
+      Console.WriteLine(String.Format("User {0} has insuffiecient credits, transaction declined!", user.Username));
     }
 
     public void DisplayGeneralError()
@@ -195,6 +195,24 @@ namespace OOPEksamen2015
         Console.WriteLine("\n____________________________________________________\n");
       }
     }
+
+    public void DisplaySuccessBuyTransaction(User user, Product product)
+    {
+      Console.WriteLine("Transaction was succesful, {0} has bought {1} for {2} DKK", user.Username, product.Name, product.Price);
+    }
+
+    public void DisplaySuccessCashTransaction(User user, int amount)
+    {
+      Console.WriteLine("Transaction was succesful, {0} has inserted {1} DKK", user.Username, amount);
+    }
+
+    public void DisplayLowBalance(User user, Product product)
+    {
+      Console.WriteLine("Transaction was succesful, {0} has bought {1} for {2} DKK", user.Username, product.Name, product.Price);
+      Console.WriteLine("WARNING: {0} has a balance of {1}, remember to insert more credit to the balace!", user.Username, user.Balance);
+    }
+
+
 
     #endregion
 

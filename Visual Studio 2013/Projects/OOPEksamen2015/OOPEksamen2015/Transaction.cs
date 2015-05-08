@@ -8,20 +8,9 @@ namespace OOPEksamen2015
   public class Transaction
   {
 
-    public Transaction()
-    {
-
-    }
-
-    public Transaction(string _User, DateTime _Date)
-    {
-      User = _User;
-      Date = _Date;
-    }
-
     public int TransactionID { get; set; }
 
-    public string User { get; set; }
+    public User User { get; set; }
 
     public DateTime Date { get; set; }
 
@@ -32,7 +21,7 @@ namespace OOPEksamen2015
       return String.Format("TransactionID: {0}\nAmount: {1}\nDate: {2}", TransactionID, Amount, Date);
     }
 
-    public virtual void Execute() { }
+    public virtual bool Execute() { return false; }
 
   }
 }

@@ -80,10 +80,6 @@ namespace OOPEksamen2015
       return true;
     }
 
-    #endregion
-
-    #region Private Validation Methods
-
     public bool UserFirstLastNameValidation(string _Username, string _Firstname, string _Lastname)
     {
       if (!UsernameValidation(_Username))
@@ -101,9 +97,22 @@ namespace OOPEksamen2015
       return true;
     }
 
+    public bool isLowBalance()
+    {
+      if (Balance < 50)
+      {
+        return true;
+      }
+      return false;
+    }
+
+    #endregion
+
+    #region Private Validation Methods
+
     private bool UsernameValidation(string username)
     {
-      Users check = new Users();
+      UsersList check = new UsersList();
       string OnlyNumbersLettersUnderscore = @"^[a-zA-Z0-9_æøå]+$";
 
       if (Regex.IsMatch(username, OnlyNumbersLettersUnderscore) && check.UsernameExistValidation(username))

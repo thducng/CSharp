@@ -7,17 +7,17 @@ namespace OOPEksamen2015
 {
   public interface IStregsystem
   {
-    void BuyProduct();
+    bool BuyProduct(User user, Product product);
 
-    void AddCreditsToAccount();
+    void AddCreditsToAccount(User user, int amount);
 
-    void ExecuteTransaction();
+    void ExecuteTransaction(Transaction transaction);
 
-    void GetProduct();
+    Product GetProduct(string command);
 
     User GetUser(string username);
 
-    void GetTransactionList();
+    List<Transaction> GetTransactionList();
 
     List<Product> GetActiveProducts();
   }

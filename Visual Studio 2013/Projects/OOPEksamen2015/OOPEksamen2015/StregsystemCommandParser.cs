@@ -63,10 +63,13 @@ namespace OOPEksamen2015
           //creditoff method with product id as parameter
           break;
         case ":addcredits":
-          //creditoff method with username and a number as parameter
+          AddCredits(commandSplit[1], Convert.ToInt32(commandSplit[2]));
           break;
         case ":newuser":
           NewUser();
+          break;
+        default:
+          cli.DisplayAdminCommandNotFoundMessage();
           break;
       }
       return cli.DisplayCommandScreen();
@@ -84,7 +87,7 @@ namespace OOPEksamen2015
           UserInformation(command);
           break;
         case "BuySingleProduct":
-          Console.WriteLine("\nBuySingleProduct");
+          BuyProduct(command);
           break;
         case "BuyMultipleProduct":
           Console.WriteLine("\nBuyMultipleProduct");
@@ -122,18 +125,72 @@ namespace OOPEksamen2015
       }
     }
 
-    private void UserInformation(string command)
+    private bool UserInformation(string command)
     {
       try
       {
         User user = stregsystem.GetUser(command);
         cli.DisplayUserInfo(user);
+        return true;
       }
       catch(ArgumentException)
       {
         cli.DisplayUserNotFound(command);
+        return false;
       }
     }
 
+    private bool BuyProduct(string command)
+    {
+      User user = new User();
+      Product product = new Product();
+
+      try
+      {
+        user = stregsystem.GetUser(command);
+        product = stregsystem.GetProduct(command);
+
+        if (stregsystem.BuyProduct(user, product)) // Failure only if the method cast a exception
+        {
+          cli.DisplaySuccessBuyTransaction(user, product);
+        }
+        else
+        {
+          cli.DisplayLowBalance(user, product); // This is also success!
+        }
+        return true;
+      }
+      catch (ArgumentException) // Den indtager ikke exception for inactive product
+      {
+        cli.DisplayUserNotFound(command);
+        return false;
+      }
+      catch (InsufficientCreditsException)
+      {
+        cli.DisplayInsufficientCash(user);
+        return false;
+      }
+    }
+
+    private bool AddCredits(string username, int amount)
+    {
+      User user = new User();
+
+      try
+      {
+        user = stregsystem.GetUser(username);
+        stregsystem.AddCreditsToAccount(user, amount);
+        cli.DisplaySuccessCashTransaction(user, amount);
+      }
+      catch(ArgumentException)
+      {
+        cli.DisplayUserNotFound(username);
+        return false;
+      }
+
+
+      return true;
+    }
+  
   }
 }

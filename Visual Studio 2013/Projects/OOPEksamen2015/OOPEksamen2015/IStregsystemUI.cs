@@ -9,7 +9,7 @@ namespace OOPEksamen2015
   {
     void DisplayUserNotFound(string username);
 
-    void DisplayProductNotFound();
+    void DisplayProductNotFound(int productID);
 
     void DisplayUserInfo(User user);
 
@@ -25,7 +25,7 @@ namespace OOPEksamen2015
 
     void Close();
 
-    void DisplayInsufficientCash();
+    void DisplayInsufficientCash(User user);
 
     void DisplayGeneralError();
 
