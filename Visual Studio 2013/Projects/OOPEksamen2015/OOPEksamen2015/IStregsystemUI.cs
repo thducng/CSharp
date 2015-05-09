@@ -9,9 +9,9 @@ namespace OOPEksamen2015
   {
     void DisplayUserNotFound(string username);
 
-    void DisplayProductNotFound(int productID);
+    void DisplayProductNotFound();
 
-    void DisplayUserInfo(User user);
+    void DisplayUserInfo(User user, List<BuyTransaction> transactionList);
 
     void DisplayTooManyArgumentsError();
 

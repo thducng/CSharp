@@ -30,10 +30,11 @@ namespace OOPEksamen2015
             if (values[0] == "BuyTransaction")
             {
               BuyTransaction transaction = new BuyTransaction();
+              Stregsystem CS = new Stregsystem();
 
               transaction.TransactionID = Convert.ToInt32(values[1]);
-              transaction.User.Username = values[2];
-              transaction.Product.ProductID = Convert.ToInt32(values[3]);
+              transaction.User = CS.GetUser(values[2]);
+              transaction.Product = CS.GetProduct(values[3]);
               transaction.Price = Convert.ToInt32(values[5]);
               transaction.Date = Convert.ToDateTime(values[6]);
 
@@ -69,9 +70,10 @@ namespace OOPEksamen2015
           if (values[0] == "InsertCashTransaction")
           {
             InsertCashTransaction transaction = new InsertCashTransaction();
+            Stregsystem CS = new Stregsystem();
 
             transaction.TransactionID = Convert.ToInt32(values[1]);
-            transaction.User.Username = values[2];
+            transaction.User = CS.GetUser(values[2]);
             transaction.Amount = Convert.ToInt32(values[4]);
             transaction.Date = Convert.ToDateTime(values[6]);
 
@@ -106,12 +108,19 @@ namespace OOPEksamen2015
         if (i == 1)
         {
           BuyTransaction transaction = new BuyTransaction();
+          Stregsystem CS = new Stregsystem();
 
+          if (values[0] == "BuyTransaction")
+          {
+            transaction.Product = CS.GetProduct(values[3]);
+            transaction.Price = Convert.ToDouble(values[5]);
+          }
+          else
+          {
+            transaction.Amount = Convert.ToDouble(values[4]);
+          }
           transaction.TransactionID = Convert.ToInt32(values[1]);
-          transaction.User.Username = values[2];
-          transaction.Product.ProductID = Convert.ToInt32(values[3]);
-          transaction.Amount = Convert.ToInt32(values[4]);
-          transaction.Price = Convert.ToInt32(values[5]);
+          transaction.User = CS.GetUser(values[2]);
           transaction.Date = Convert.ToDateTime(values[6]);
 
           transactionList.Add(transaction);
@@ -147,7 +156,7 @@ namespace OOPEksamen2015
       string delimiter = ";";
       string[][] output = new string[][]
       {
-      new string[]{"InsertCashTransaction",newTransactionID().ToString(),transaction.User.Username,"",transaction.Amount.ToString(),"",transaction.Date.ToString()}
+      new string[]{"InsertCashTransaction",newTransactionID().ToString(),transaction.User.Username,"EMPTY",transaction.Amount.ToString(),"EMPTY",transaction.Date.ToString()}
       };
       int length = output.GetLength(0);
       StringBuilder sb = new StringBuilder();
@@ -179,6 +188,18 @@ namespace OOPEksamen2015
     {
       List<BuyTransaction> transactionList = GetList();
       return transactionList.Count+1;
+    }
+
+
+    private bool CheckIfNumber(string str)
+    {
+      int productID = 0;
+
+      if (int.TryParse(str, out productID))
+      {
+        return true;
+      }
+      return false;
     }
 
   }

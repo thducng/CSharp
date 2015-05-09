@@ -27,7 +27,7 @@ namespace OOPEksamen2015
 
     public string ParseCommand(string command)
     {
-      if (command[0] == ':')
+      if (command.Length > 0 && command[0] == ':')
       {
         if (command != ":q" && command != ":quit" && command != ":Q" && command != ":Quit")
         {
@@ -81,7 +81,7 @@ namespace OOPEksamen2015
       switch (commandType)
       {
         case "start":
-          StartMenu();
+          ParseCommand(StartMenu());
           break;
         case "UserInformation":
           UserInformation(command);
@@ -127,10 +127,13 @@ namespace OOPEksamen2015
 
     private bool UserInformation(string command)
     {
+
       try
       {
         User user = stregsystem.GetUser(command);
-        cli.DisplayUserInfo(user);
+        List<BuyTransaction> transactionList = stregsystem.GetBuyTransactionList();
+        cli.DisplayUserInfo(user, transactionList);
+
         return true;
       }
       catch(ArgumentException)
@@ -150,17 +153,17 @@ namespace OOPEksamen2015
         user = stregsystem.GetUser(command);
         product = stregsystem.GetProduct(command);
 
-        if (stregsystem.BuyProduct(user, product)) // Failure only if the method cast a exception
+        if (stregsystem.BuyProduct(user, product))
         {
           cli.DisplaySuccessBuyTransaction(user, product);
         }
         else
         {
-          cli.DisplayLowBalance(user, product); // This is also success!
+          cli.DisplayLowBalance(user, product); 
         }
         return true;
       }
-      catch (ArgumentException) // Den indtager ikke exception for inactive product
+      catch (ArgumentException)
       {
         cli.DisplayUserNotFound(command);
         return false;
@@ -168,6 +171,11 @@ namespace OOPEksamen2015
       catch (InsufficientCreditsException)
       {
         cli.DisplayInsufficientCash(user);
+        return false;
+      }
+      catch (InactiveProductException)
+      {
+        cli.DisplayProductNotFound();
         return false;
       }
     }

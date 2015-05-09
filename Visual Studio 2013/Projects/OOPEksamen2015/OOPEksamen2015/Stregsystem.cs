@@ -69,7 +69,7 @@ namespace OOPEksamen2015
         }
       }
 
-      throw new System.ArgumentException("The entered productID is inactive or not in the product catalog");
+      throw new InactiveProductException();
     }
 
     public List<User> GetUserList()
@@ -93,12 +93,25 @@ namespace OOPEksamen2015
         }
       }
 
-      throw new System.ArgumentException("The entered username, is not in the databse of usernames");
+      throw new System.ArgumentException("The entered username, is not in the database of usernames");
     }
 
-    public List<Transaction> GetTransactionList()
+    public List<BuyTransaction> GetBuyTransactionList()
     {
-      throw new NotImplementedException();
+      TransactionsList transactionList = new TransactionsList();
+      return transactionList.GetBuyList();
+    }
+
+    public List<InsertCashTransaction> GetCashTransactionList()
+    {
+      TransactionsList transactionList = new TransactionsList();
+      return transactionList.GetCashList();
+    }
+
+    public List<BuyTransaction> GetTransactionList()
+    {
+      TransactionsList transactionList = new TransactionsList();
+      return transactionList.GetList();
     }
 
     public bool CreateNewUser(User newUser)

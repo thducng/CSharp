@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace OOPEksamen2015
 {
   class Program
   {
+    [STAThread]
     static void Main(string[] args)
     {
       Stregsystem stregsystem = new Stregsystem();
@@ -27,13 +29,20 @@ namespace OOPEksamen2015
      *    - Hvis denne retunere true, så skal CLI display Succes transaction OG display low balance
      *    - Efter man har displ
      * 
-     * Transactions:
+     * Transactions: CHECK!
      *  - Transaction csv fil skal laves, og testes
      *  - BuyTransactions skal derefter laves, og buyproduct testes.
      *  
-     * Parser:
-     *  - 163 // Den indtager ikke exception for inactive product
+     * Parser: CHECK!
+     *  - 163 // Den indtager ikke exception for inactive product 
      * 
+     * 
+     * Buy Multiple Products:
+     *  - BuyMultipleProducts method skal laves ind under commandparser
+     *    - Den skal kunne skille antal og product id fra command line
+     *    - Check i denne rækkefølge: User -> Product ID -> Amount
+     *    - Kør BuyProduct method med User og ProductID, Amount antal gange!
+     *    - Display Succes user bought amount times product name. 
      * 
      */
 

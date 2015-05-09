@@ -31,12 +31,12 @@ namespace OOPEksamen2015
       Console.WriteLine("{0} is not a part of this database, try again", username);
     }
 
-    public void DisplayProductNotFound(int productID)
+    public void DisplayProductNotFound()
     {
-      Console.WriteLine("{0} is not in the product catalog, try again", productID);
+      Console.WriteLine("The entered productID is inactive or not in the product catalog, try again");
     }
 
-    public void DisplayUserInfo(User user)
+    public void DisplayUserInfo(User user, List<BuyTransaction> transactionList)
     {
       Console.Clear();
       Console.WriteLine("Information for {0} {1} \n", user.Firstname, user.Lastname);
@@ -44,9 +44,9 @@ namespace OOPEksamen2015
       Console.WriteLine("Full name: {0} {1}", user.Firstname, user.Lastname);
       Console.WriteLine("Balance: {0} DKK", user.Balance.ToString());
       Console.WriteLine("\n____________________________________________________");
-      Console.WriteLine("Transaction list for the last 10 transactions: \n");
-      //DisplayBuyTransactionHistory();
-
+      Console.WriteLine("Transaction list for the last 10 transactions: ");
+      DisplayBuyTransactionHistory(transactionList, 10);
+      
     }
 
     public void DisplayTooManyArgumentsError()
@@ -120,13 +120,14 @@ namespace OOPEksamen2015
 
     public void DisplayBuyTransactionHistory(List<BuyTransaction> transactionList, int number)
     {
-      for(int i = 0; i < 10; i++)
+      for(int i = 0; i < transactionList.Count; i++)
       {
-        Console.WriteLine("{0} - TransactionID: {1}", i.ToString("D2"), transactionList[i].TransactionID);
-        Console.WriteLine("   - Product: {0} ", transactionList[i].Product);
-        Console.WriteLine("   - Amount: {0} ", transactionList[i].Amount);
-        Console.WriteLine("   - Date: {0} \n", transactionList[i].Date);
+        Console.WriteLine("\n{0} - TransactionID: {1}", (i+1).ToString("D2"), transactionList[i].TransactionID);
+        Console.WriteLine("   - Product: {0} ", transactionList[i].Product.Name);
+        Console.WriteLine("   - Price: {0} ", transactionList[i].Price);
+        Console.WriteLine("   - Date: {0} ", transactionList[i].Date);
       }
+
 
     }
 

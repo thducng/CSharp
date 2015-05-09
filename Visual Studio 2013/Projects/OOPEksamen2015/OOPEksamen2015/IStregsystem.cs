@@ -17,7 +17,11 @@ namespace OOPEksamen2015
 
     User GetUser(string username);
 
-    List<Transaction> GetTransactionList();
+    List<BuyTransaction> GetBuyTransactionList();
+
+    List<InsertCashTransaction> GetCashTransactionList();
+
+    List<BuyTransaction> GetTransactionList();
 
     List<Product> GetActiveProducts();
   }
