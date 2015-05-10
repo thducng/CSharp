@@ -42,7 +42,19 @@ namespace OOPEksamen2015
      *    - Den skal kunne skille antal og product id fra command line
      *    - Check i denne rækkefølge: User -> Product ID -> Amount
      *    - Kør BuyProduct method med User og ProductID, Amount antal gange!
-     *    - Display Succes user bought amount times product name. 
+     *    - Display Succes user bought amount times product name.
+     *    
+     * Exceptions:
+     *  - Der skal laves en masse exceptions, så man kan display en rigtig message.
+     *    
+     * Bug:
+     *  - Efter man har brugt kommando så skal man bruge start før at man kan lave en ny kommando
+     *    - try Tinny -> :userlist
+     *  - Ved usercreation skal man kunne quit!
+     *  - ved usercreation hvis username allerede existere får man en forkert meddelse
+     *    - Den skal use this Username already exist
+     *  - UserInformation printer alle transactions, denne skal fixes således den kun viser USERENS transactions!
+     *    - SpicyGG har samme transactions som vPenguiin og Tinny.
      * 
      */
 

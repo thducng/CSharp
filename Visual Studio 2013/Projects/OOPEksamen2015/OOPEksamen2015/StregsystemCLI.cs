@@ -28,12 +28,12 @@ namespace OOPEksamen2015
 
     public void DisplayUserNotFound(string username)
     {
-      Console.WriteLine("{0} is not a part of this database, try again", username);
+      Console.WriteLine("\n{0} is not a part of this database, try again", username);
     }
 
     public void DisplayProductNotFound()
     {
-      Console.WriteLine("The entered productID is inactive or not in the product catalog, try again");
+      Console.WriteLine("\nThe entered productID is inactive or not in the product catalog, try again");
     }
 
     public void DisplayUserInfo(User user, List<BuyTransaction> transactionList)
@@ -199,18 +199,18 @@ namespace OOPEksamen2015
 
     public void DisplaySuccessBuyTransaction(User user, Product product)
     {
-      Console.WriteLine("Transaction was succesful, {0} has bought {1} for {2} DKK", user.Username, product.Name, product.Price);
+      Console.WriteLine("\nTransaction was succesful, {0} has bought {1} for {2} DKK", user.Username, product.Name, product.Price);
     }
 
     public void DisplaySuccessCashTransaction(User user, int amount)
     {
-      Console.WriteLine("Transaction was succesful, {0} has inserted {1} DKK", user.Username, amount);
+      Console.WriteLine("\nTransaction was succesful, {0} has inserted {1} DKK", user.Username, amount);
     }
 
     public void DisplayLowBalance(User user, Product product)
     {
-      Console.WriteLine("Transaction was succesful, {0} has bought {1} for {2} DKK", user.Username, product.Name, product.Price);
-      Console.WriteLine("WARNING: {0} has a balance of {1}, remember to insert more credit to the balace!", user.Username, user.Balance);
+      Console.WriteLine("\nTransaction was succesful, {0} has bought {1} for {2} DKK", user.Username, product.Name, product.Price);
+      Console.WriteLine("\nWARNING: {0} has a balance of {1} DKK", user.Username, user.Balance);
     }
 
 
