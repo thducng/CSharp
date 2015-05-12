@@ -9,6 +9,8 @@ namespace OOPEksamen2015
   public class SeasonProductCatalog : LogsInformation
   {
 
+    #region Constructor and Properties
+
     private string filePath;
 
     public SeasonProductCatalog()
@@ -16,7 +18,10 @@ namespace OOPEksamen2015
       filePath = GetPath("SeasonProductCatalog.csv");
     }
 
-    // inspireret af http://stackoverflow.com/questions/5282999/reading-csv-file-and-storing-values-into-an-array
+    #endregion
+
+    #region Public Methods
+
     public List<SeasonalProduct> GetList()
     {
       List<SeasonalProduct> seasonalProductList = new List<SeasonalProduct>();
@@ -54,6 +59,7 @@ namespace OOPEksamen2015
       return seasonalProductList;
     }
 
+    //Updates seasonalproduct - Changes to its flag for credit
     public bool UpdateProduct(SeasonalProduct updatedSeasonalProduct)
     {
       List<string> seasonalProducts = new List<string>();
@@ -92,6 +98,7 @@ namespace OOPEksamen2015
       return true;
     }
 
+    //Adds new SeasonalProduct
     public bool AddNewSeasonalProduct(SeasonalProduct newSeasonalProduct)
     {
 
@@ -110,12 +117,26 @@ namespace OOPEksamen2015
 
     }
 
+    //Gets Product a unique ID
     public int NewSeasonalProductID()
     {
       ProductCatalog productList = new ProductCatalog();
+      int highestID = 0;
 
-      return GetList().Count + productList.GetList().Count + 1;
+      foreach (Product product in productList.GetList())
+      {
+        if (product.ProductID > highestID)
+        {
+          highestID = product.ProductID;
+        }
+      }
+
+      return highestID + 1;
     }
+
+    #endregion
+
+    #region Private Methods
 
     // stort set kopieret, men har læst og forstået http://softwaretipz.com/c-sharp-code-to-create-a-csv-file-and-write-data-into-it/
     private void checkCreateProductFile()
@@ -134,6 +155,8 @@ namespace OOPEksamen2015
         File.AppendAllText(filePath, sb.ToString());
       }
     }
+
+    #endregion
 
   }
 }

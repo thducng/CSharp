@@ -7,12 +7,15 @@ namespace OOPEksamen2015
 {
   public class InsertCashTransaction : Transaction
   {
+
+    #region Public Methods
+
     public override bool Execute(Stregsystem CS)
     {
       TransactionsList transactionList = new TransactionsList(CS);
       UsersList usersList = new UsersList();
 
-      User.Balance = User.Balance + Amount;
+      User.Balance = User.Balance + Amount * 100;
       Date = DateTime.Now;
 
       if (transactionList.AddCashTransaction(this))
@@ -23,7 +26,6 @@ namespace OOPEksamen2015
         }
         return false;
       }
-
       return false;
     }
 
@@ -31,5 +33,8 @@ namespace OOPEksamen2015
     {
       return String.Format("TransactionID: {0} User: {1} Amount: {2} DKK Date: {3}");
     }
+
+    #endregion
+
   }
 }

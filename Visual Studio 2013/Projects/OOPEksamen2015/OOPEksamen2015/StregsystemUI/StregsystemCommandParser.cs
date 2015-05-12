@@ -46,6 +46,8 @@ namespace OOPEksamen2015
 
     #region Private Methods
 
+    #region Command and Exception Related
+
     private void AdminCommand(string command)
     {
       string[] commandSplit = command.Split(' ');
@@ -62,15 +64,8 @@ namespace OOPEksamen2015
       AdminDic.Add(":newseasonalproduct", () => NewSeasonalProduct());
       AdminDic.Add(":userlist", () => cli.DisplayAllUsers());
 
-      try
-      {
-        var action = AdminDic[commandSplit[0]] as Action;
-        action();
-      }
-      catch (Exception)
-      {
-        cli.DisplayAdminCommandNotFoundMessage();
-      }
+      var action = AdminDic[commandSplit[0]] as Action;
+      action();
     }
     
     private void BasicCommands(string command)
@@ -96,16 +91,6 @@ namespace OOPEksamen2015
       }
     }
 
-    private void NewUser()
-    {
-      stregsystem.CreateNewUser(cli.DisplayUserCreation());
-    }
-
-    private void NewSeasonalProduct()
-    {
-      stregsystem.CreateNewSeasonalProduct(cli.DisplaySeasonalProductCreation());
-    }
-
     private string CommandType(string command)
     {
       string[] commandSplit = command.Split(' ');
@@ -128,11 +113,43 @@ namespace OOPEksamen2015
       }
     }
 
+    private void DisplayGivenException(Exception ex)
+    {
+      if (ex is UserNotFoundException) { cli.DisplayUserNotFound(); }
+      else if (ex is KeyNotFoundException) { cli.DisplayAdminCommandNotFoundMessage(); }
+      else if (ex is InactiveProductException) { cli.DisplayProductNotFound(); }
+      else if (ex is InsufficientCreditsException) { cli.DisplayInsufficientCash(); }
+      else { cli.DisplayGeneralError(ex.Message); }
+    }
+
+    #endregion
+
+    #region User Related
+
+    private void NewUser()
+    {
+      stregsystem.CreateNewUser(cli.DisplayUserCreation());
+    }
+
     private void UserInformation(string command)
     {
       User user = stregsystem.GetUser(command);
       List<BuyTransaction> transactionList = stregsystem.GetBuyTransactionList(user);
       cli.DisplayUserInfo(user, transactionList);
+    }
+
+    #endregion
+
+    #region Transaction Related
+
+    private void AddCredits(string username, int amount)
+    {
+      User user = new User();
+
+      user = stregsystem.GetUser(username);
+      stregsystem.AddCreditsToAccount(user, amount);
+      UserInformation(username);
+      cli.DisplaySuccessCashTransaction(user, amount);
     }
 
     private void BuyProduct(string command)
@@ -152,7 +169,7 @@ namespace OOPEksamen2015
       }
       else
       {
-        cli.DisplayLowBalance(user, product); 
+        cli.DisplayLowBalance(user, product);
       }
     }
 
@@ -176,17 +193,17 @@ namespace OOPEksamen2015
       }
       else
       {
-        cli.DisplayLowBalance(user, product); 
+        cli.DisplayLowBalance(user, product);
       }
     }
 
-    private void AddCredits(string username, int amount)
-    {
-      User user = new User();
+    #endregion
 
-      user = stregsystem.GetUser(username);
-      stregsystem.AddCreditsToAccount(user, amount);
-      cli.DisplaySuccessCashTransaction(user, amount);
+    #region Product Related
+
+    private void NewSeasonalProduct()
+    {
+      stregsystem.CreateNewSeasonalProduct(cli.DisplaySeasonalProductCreation());
     }
 
     private void ActiveDeactiveProduct(string command, bool productState)
@@ -215,13 +232,7 @@ namespace OOPEksamen2015
       }
     }
 
-    private void DisplayGivenException(Exception ex)
-    {
-      if (ex is UserNotFoundException) { cli.DisplayUserNotFound(); }
-      else if (ex is InactiveProductException) { cli.DisplayProductNotFound(); }
-      else if (ex is InsufficientCreditsException) { cli.DisplayInsufficientCash(); }
-      else { cli.DisplayGeneralError(ex.Message); }    
-    }
+    #endregion
 
     #endregion
 

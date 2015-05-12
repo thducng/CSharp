@@ -8,7 +8,7 @@ namespace OOPEksamen2015
   public class Stregsystem : IStregsystem
   {
 
-    #region Constructor and Properties
+    #region Constructor , Properties and LoadList
 
     private List<User> UserList = new List<User>();
     private List<Product> ProductList = new List<Product>();
@@ -21,10 +21,6 @@ namespace OOPEksamen2015
   
     }
 
-    #endregion
-
-    #region IStregsystem Members
-
     public void LoadList()
     {
       TransactionsList transactionsList = new TransactionsList(this);
@@ -36,7 +32,40 @@ namespace OOPEksamen2015
       ProductList = productCatalog.GetList();
       SeasonalProductList = seasonalProductCatalog.GetList();
       BTransactionList = transactionsList.GetBuyList();
-      CTransactionList = transactionsList.GetCashList();   
+      CTransactionList = transactionsList.GetCashList();
+    }
+
+    #endregion
+
+    #region IStregsystem Members
+
+    #region Products
+
+    public Product GetProduct(string command)
+    {
+      Product product = new Product();
+      int productID = 0;
+
+      if (BuyProductValidation(command, out productID))
+      {
+        foreach (Product _product in ProductList)
+        {
+          if (_product.ProductID == productID)
+          {
+            return _product;
+          }
+        }
+
+        foreach (Product _product in SeasonalProductList)
+        {
+          if (_product.ProductID == productID)
+          {
+            return _product;
+          }
+        }
+      }
+
+      throw new InactiveProductException();
     }
 
     public bool BuyProduct(User user, Product product)
@@ -83,37 +112,56 @@ namespace OOPEksamen2015
       return true;
     }
 
-    public void AddCreditsToAccount(User user, int amount)
+    public bool CreateNewSeasonalProduct(SeasonalProduct newSeasonalProduct)
     {
-      InsertCashTransaction newTransaction = new InsertCashTransaction();
-      newTransaction.User = user;
-      newTransaction.Amount = amount;
+      SeasonProductCatalog seasonalProductList = new SeasonProductCatalog();
+      newSeasonalProduct.ProductID = seasonalProductList.NewSeasonalProductID();
 
-      ExecuteTransaction(newTransaction);
+      return seasonalProductList.AddNewSeasonalProduct(newSeasonalProduct);
     }
 
-    public void ExecuteTransaction(Transaction transaction)
+    public List<Product> GetActiveProducts()
     {
-      transaction.Execute(this);
-    }
+      List<Product> activeProducts = new List<Product>();
 
-    public Product GetProduct(string command)
-    {
-      Product product = new Product();
-      int productID = 0;
-
-      if(BuyProductValidation(command, out productID))
+      foreach (Product product in ProductList)
       {
-        foreach (Product _product in ProductList)
+        if (product.Active)
         {
-          if (_product.ProductID == productID)
-          {
-            return _product;
-          }
+          activeProducts.Add(product);
         }
       }
 
-      throw new InactiveProductException();
+      return activeProducts;
+    }
+
+    public List<SeasonalProduct> GetSeasonalProducts()
+    {
+      List<SeasonalProduct> activeProducts = new List<SeasonalProduct>();
+
+      foreach (SeasonalProduct seasonalProduct in SeasonalProductList)
+      {
+        seasonalProduct.Activate();
+
+        if (seasonalProduct.Active)
+        {
+          activeProducts.Add(seasonalProduct);
+        }
+      }
+
+      return activeProducts;
+    }
+
+    #endregion
+
+    #region Users
+
+    public bool CreateNewUser(User newUser)
+    {
+      UsersList usersList = new UsersList();
+      newUser.UserID = usersList.NewUserID();
+
+      return usersList.AddNewUser(newUser);
     }
 
     public List<User> GetUserList()
@@ -135,6 +183,24 @@ namespace OOPEksamen2015
       }
 
       throw new UserNotFoundException();
+    }
+
+    #endregion
+
+    #region Transactions
+
+    public void AddCreditsToAccount(User user, int amount)
+    {
+      InsertCashTransaction newTransaction = new InsertCashTransaction();
+      newTransaction.User = user;
+      newTransaction.Amount = amount;
+
+      ExecuteTransaction(newTransaction);
+    }
+
+    public void ExecuteTransaction(Transaction transaction)
+    {
+      transaction.Execute(this);
     }
 
     public List<BuyTransaction> GetBuyTransactionList(User user)
@@ -173,53 +239,7 @@ namespace OOPEksamen2015
       return transactionList.GetList();
     }
 
-    public bool CreateNewUser(User newUser)
-    {
-      UsersList usersList = new UsersList();
-      newUser.UserID = usersList.NewUserID();
-
-      return usersList.AddNewUser(newUser);
-    }
-
-    public bool CreateNewSeasonalProduct(SeasonalProduct newSeasonalProduct)
-    {
-      SeasonProductCatalog seasonalProductList = new SeasonProductCatalog();
-      newSeasonalProduct.ProductID = seasonalProductList.NewSeasonalProductID();
-
-      return seasonalProductList.AddNewSeasonalProduct(newSeasonalProduct);
-    }
-
-    public List<Product> GetActiveProducts()
-    {
-      List<Product> activeProducts = new List<Product>();
-
-      foreach(Product product in ProductList)
-      {
-        if (product.Active)
-        {
-          activeProducts.Add(product);
-        }
-      }
-
-      return activeProducts;
-    }
-
-    public List<SeasonalProduct> GetSeasonalProducts()
-    {
-      List<SeasonalProduct> activeProducts = new List<SeasonalProduct>();
-
-      foreach (SeasonalProduct seasonalProduct in SeasonalProductList)
-      {
-        seasonalProduct.Activate();
-
-        if (seasonalProduct.Active)
-        {
-          activeProducts.Add(seasonalProduct);
-        }
-      }
-
-      return activeProducts;
-    }
+    #endregion
 
     #endregion
 

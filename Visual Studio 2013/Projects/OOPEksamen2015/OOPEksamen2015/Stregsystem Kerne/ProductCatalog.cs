@@ -8,6 +8,9 @@ namespace OOPEksamen2015
 {
   public class ProductCatalog : LogsInformation
   {
+
+    #region Constructor and Properties
+
     private string filePath;
 
     public ProductCatalog()
@@ -15,7 +18,10 @@ namespace OOPEksamen2015
       filePath = GetPath("ProductCatalog.csv");
     }
 
-    // inspireret af http://stackoverflow.com/questions/5282999/reading-csv-file-and-storing-values-into-an-array
+    #endregion
+
+    #region Public Methods
+
     public List<Product> GetList()
     {
       List<Product> productList = new List<Product>();
@@ -50,6 +56,7 @@ namespace OOPEksamen2015
       return productList;
     }
 
+    //Updates product - Changes to its activity
     public bool UpdateProduct(Product updatedProduct)
     {
       List<string> products = new List<string>();
@@ -86,7 +93,12 @@ namespace OOPEksamen2015
       return true;
     }
 
-    public string RemovesHTML(string name)
+    #endregion
+
+    #region Private Methods
+
+    //Removes HTML from the ProductCatalog
+    private string RemovesHTML(string name)
     {
       if (name.Contains('>') || name.Contains('<'))
       {
@@ -100,6 +112,8 @@ namespace OOPEksamen2015
       }
       return name;
     }
+
+    #endregion
 
   }
 }

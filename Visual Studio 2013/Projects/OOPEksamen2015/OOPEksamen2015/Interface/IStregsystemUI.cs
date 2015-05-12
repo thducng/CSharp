@@ -7,31 +7,20 @@ namespace OOPEksamen2015
 {
   public interface IStregsystemUI
   {
+
+    void Start(StregsystemCommandParser parser);
+
     void Close();
 
-    void DisplayUserNotFound();
+    void DisplayStartMenu();
 
-    void DisplayProductNotFound();
-
-    void DisplayUserInfo(User user, List<BuyTransaction> transactionList);
-
-    void DisplayCommandNotFoundMessage();
-   
-    void DisplayAdminCommandNotFoundMessage();
+    string DisplayCommandScreen();
 
     void DisplayUserBuysProduct(User user, Product product);
 
     void DisplayUserBuysMultipleProduct(User user, string amount, Product product);
 
-    void DisplayInsufficientCash();
-
-    void DisplayStartMenu();
-
     void DisplayBuyTransactionHistory(List<BuyTransaction> transactionList, int number);
-
-    string DisplayCommandScreen();
-
-    void DisplayAllUsers();
 
     void DisplaySuccessCashTransaction(User user, int amount);
 
@@ -39,10 +28,30 @@ namespace OOPEksamen2015
 
     void DisplayAmountError();
 
+    void DisplayUserInfo(User user, List<BuyTransaction> transactionList);
+
+    void DisplayAllActiveProducts(List<Product> activeProducts, List<SeasonalProduct> activeSeasonalProducts);
+
+    void DisplayAllUsers();
+
     void DisplayActiveDeactiveProduct(Product product, bool state);
 
     void DisplayCreditOnOffProduct(Product product, bool state);
 
+    User DisplayUserCreation();
 
+    SeasonalProduct DisplaySeasonalProductCreation();
+
+    void DisplayUserNotFound();
+
+    void DisplayProductNotFound();
+
+    void DisplayCommandNotFoundMessage();
+
+    void DisplayAdminCommandNotFoundMessage();
+
+    void DisplayInsufficientCash();
+
+    void DisplayGeneralError(string ex);
   }
 }

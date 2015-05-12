@@ -7,9 +7,16 @@ namespace OOPEksamen2015
 {
   public class BuyTransaction : Transaction
   {
+
+    #region Properties
+
     public Product Product { get; set; }
 
     public double Price { get; set; }
+
+    #endregion
+
+    #region Public Methods
 
     public override bool Execute(Stregsystem CS)
     {
@@ -34,7 +41,12 @@ namespace OOPEksamen2015
     {
       return String.Format("TransactionID: {0} User: {1} Product: {2} Price: {3} DKK Date: {4}", TransactionID, User, Product, Price, Date);
     }
- 
+
+    #endregion
+
+    #region Private Methods
+
+    //Algorithm for Execute, just that it filled to much - seems unreadable
     private bool SaveTransaction(BuyTransaction transaction, Stregsystem CS)
     {
       TransactionsList transactionList = new TransactionsList(CS);
@@ -54,7 +66,7 @@ namespace OOPEksamen2015
       }
       return false;
     }
-  
 
+    #endregion
   }
 }

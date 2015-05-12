@@ -9,6 +9,9 @@ namespace OOPEksamen2015
 {
   public class UsersList : LogsInformation
   {
+
+    #region Constructor and Properties
+
     private string filePath;
 
     public UsersList()
@@ -16,7 +19,11 @@ namespace OOPEksamen2015
       filePath = GetPath("UsersList.csv");
     }
 
-    // inspireret af http://stackoverflow.com/questions/5282999/reading-csv-file-and-storing-values-into-an-array
+    #endregion
+
+    #region Public Methods
+
+    // All Get Lists is inspired by this source http://stackoverflow.com/questions/5282999/reading-csv-file-and-storing-values-into-an-array
     public List<User> GetList()
     {
       List<User> userList = new List<User>();
@@ -55,6 +62,7 @@ namespace OOPEksamen2015
       return userList;
     }
 
+    //Updates User - Balance change
     public bool UpdateUser(User updatedUser)
     {
       List<string> users = new List<string>();
@@ -90,6 +98,7 @@ namespace OOPEksamen2015
       return true;
     }
 
+    //Admin can add new user
     public bool AddNewUser(User newUser)
     {
  
@@ -108,11 +117,13 @@ namespace OOPEksamen2015
 
     }
 
+    //Gives new user unique ID
     public int NewUserID()
     {
       return GetList().Count+1;
     }
 
+    //Checks if username already exists
     public bool UsernameExistValidation(string username)
     {
       List<User> usersList = new List<User>();
@@ -123,16 +134,19 @@ namespace OOPEksamen2015
       {
         if (oldUser.Username == username)
         {
-          return false;
+          return true;
         }
       }
 
-      return true;
+      return false;
     }
+
+    #endregion
 
     #region Private Methods
 
-    // stort set kopieret, men har læst og forstået http://softwaretipz.com/c-sharp-code-to-create-a-csv-file-and-write-data-into-it/
+    //stort set kopieret, men har læst og forstået http://softwaretipz.com/c-sharp-code-to-create-a-csv-file-and-write-data-into-it/
+    //Checks if file is created, else creates it
     private void checkCreateUserFile()
     {
       if (!File.Exists(filePath))
@@ -140,7 +154,7 @@ namespace OOPEksamen2015
         File.Create(filePath).Close();
         string delimiter = ";";
         string[][] output = new string[][]{
-            new string[]{"UserID","Firstname","Lastname","Birthday","Username","Email","Balance"} /*add the values that you want inside a csv file. Mostly this function can be used in a foreach loop.*/
+            new string[]{"UserID","Firstname","Lastname","Birthday","Username","Email","Balance"}
             };
         int length = output.GetLength(0);
         StringBuilder sb = new StringBuilder();

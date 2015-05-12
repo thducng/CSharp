@@ -8,10 +8,17 @@ namespace OOPEksamen2015
   public class SeasonalProduct : Product
   {
 
+    #region Properties
+
     public DateTime SeasonStartDate { get; set; }
 
     public DateTime SeasonEndDate { get; set; }
 
+    #endregion
+
+    #region Public Methods
+
+    //Method with algorithm for season product active time
     public void Activate()
     {
       DateTime CurrentDate = DateTime.Now;
@@ -41,15 +48,20 @@ namespace OOPEksamen2015
       }
     }
 
-    public bool newSeasonalProduct(string name, string price, string startdate, string enddate)
+    //Creates and askes for all needed information
+    public bool newSeasonalProduct(string name, string price, string startMonth, string endMonth)
     {
       Name = name;
-      Price = Convert.ToInt32(price);
+      Price = Convert.ToInt32(price) * 100;
 
-      SeasonStartDate = new DateTime(2015, Convert.ToInt32(startdate), 01);
-      SeasonEndDate = new DateTime(2015, Convert.ToInt32(enddate), 01);
+      SeasonStartDate = new DateTime(2015, Convert.ToInt32(startMonth), 01);
+      SeasonEndDate = new DateTime(2015, Convert.ToInt32(endMonth), 01);
+      Activate();
 
       return true;
     }
+
+    #endregion
+
   }
 }

@@ -8,9 +8,10 @@ namespace OOPEksamen2015
   public class Product
   {
 
+    #region Constructor and Properties
+
     public Product()
     {
-      Price = 0;
       Active = false;
       CanBeBoughtOnCredit = false;
     }
@@ -24,6 +25,8 @@ namespace OOPEksamen2015
     public virtual bool Active { get; set; }
 
     public bool CanBeBoughtOnCredit { get; set; }
+
+    #endregion
 
   }
 }

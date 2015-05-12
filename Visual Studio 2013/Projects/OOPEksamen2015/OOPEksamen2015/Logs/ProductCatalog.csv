@@ -1,6 +1,6 @@
 id;name;price;active;deactivate_date
-1;Diverse;100;0;
-2;"½L Letmælk";450;True;
+1;Diverse;100;False;
+2;"½L Letmælk";450;False;
 3;"¼L Letmælk";250;0;
 4;"¼L Skummetmælk";225;0;
 5;"¼L Kærnemælk";225;0;
@@ -35,7 +35,7 @@ id;name;price;active;deactivate_date
 34;Nestea;1300;1;
 35;"kaffe - ansat";1125;0;
 36;"kaffe - stud";750;0;
-37;"½L Vand incl. pant";1350;1;
+37;"½L Vand incl. pant";1350;False;
 38;Juice;1200;0;
 39;"Ansat KAFFE(1 kop)";0;0;
 40;"Frisk luft v. BSS";100;0;"2007-12-24 20:00:01"

@@ -10,6 +10,9 @@ namespace OOPEksamen2015
   public class LogsInformation
   {
 
+    #region Methods for Inheritors
+
+    //Method to get path for the right filename
     public string GetPath(string filename)
     {
       string ProjectFolder = Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory()));
@@ -19,6 +22,7 @@ namespace OOPEksamen2015
       return combined;
     }
 
+    //For files that has both True or 1, False or 0
     public int TrueFalse(string active)
     {
       if (active.Contains("True"))
@@ -34,6 +38,8 @@ namespace OOPEksamen2015
         return Convert.ToInt32(active);
       }
     }
+
+    #endregion
 
   }
 }

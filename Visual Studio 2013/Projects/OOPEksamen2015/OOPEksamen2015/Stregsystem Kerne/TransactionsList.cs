@@ -9,6 +9,9 @@ namespace OOPEksamen2015
 {
   public class TransactionsList : LogsInformation
   {
+
+    #region Constructor and Properties
+
     private string filePath;
     private Stregsystem CS;
 
@@ -17,6 +20,10 @@ namespace OOPEksamen2015
       filePath = GetPath("TransactionsList.csv");
       CS = _CS;
     }
+
+    #endregion
+
+    #region Gets three different lists
 
     public List<BuyTransaction> GetBuyList()
     {
@@ -139,6 +146,10 @@ namespace OOPEksamen2015
       return SortDescending(transactionList);
     }
 
+    #endregion
+
+    #region Adds Transactions
+
     public bool AddBuyTransaction(BuyTransaction transaction)
     {
       string delimiter = ";";
@@ -171,6 +182,11 @@ namespace OOPEksamen2015
       return true;
     }
 
+    #endregion
+
+    #region Private Methods
+
+    //Checks if the List is created, else creates it
     private void checkCreateTransactionList()
     {
       if (!File.Exists(filePath))
@@ -188,6 +204,7 @@ namespace OOPEksamen2015
       }
     }
 
+    //Gets a unique Transaction ID
     private int newTransactionID()
     {
       List<BuyTransaction> list = GetList();
@@ -195,11 +212,15 @@ namespace OOPEksamen2015
       return list[list.Count-1].TransactionID + 1;
     }
 
+    //Sorts the buyTransactionList to have the latest first;
     private List<BuyTransaction> SortDescending(List<BuyTransaction> transactionList)
     {    
 	    transactionList.Sort((a, b) => b.CompareTo(a));
 
 	    return transactionList;
     }
+
+    #endregion
+
   }
 }

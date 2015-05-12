@@ -39,12 +39,13 @@ namespace OOPEksamen2015
 
     #region Public Methods
 
+    //Custom way to convert User to string
     public override string ToString()
     {
       return Firstname + " "+ Lastname;
     }
 
-    //Equals og GetHashCode inspireret af Slides fra OOP
+    //Equals inspiret by OOP Slides
     public override bool Equals(object obj)
     {
       User otherObj = obj as User;
@@ -52,11 +53,13 @@ namespace OOPEksamen2015
       return UserID.Equals(otherObj.UserID) && Username.Equals(otherObj.Username);
     }
 
+    //GetHashCode inspiret by OOP Slides
     public override int GetHashCode()
     {
       return this.UserID * 251;
     }
 
+    //Checks if extra information(email and age) is correctly formatted
     public bool Information(string information) 
     {
       string[] infoSplit = information.Split(' ');
@@ -78,24 +81,17 @@ namespace OOPEksamen2015
       return false;
     }
 
+    //Checks if User- , First- and Lastname is correctly formatted
     public bool UserFirstLastNameValidation(string _Username, string _Firstname, string _Lastname)
     {
-      if (!UsernameValidation(_Username))
-      {
-        throw new UsernameExistException();
-      }
-      if (!FirstnameValidation(_Firstname))
-      {
-        throw new FirstnameIncorrectlyException();
-      }
-      if (!LastnameValidation(_Lastname))
-      {
-        throw new LastnameIncorrectlyException();
-      }
+      UsernameValidation(_Username);
+      FirstnameValidation(_Firstname);
+      LastnameValidation(_Lastname);
 
       return true;
     }
 
+    //Checks if balance is under 50 DKK.
     public bool isLowBalance()
     {
       if (Balance < 50)
@@ -114,12 +110,17 @@ namespace OOPEksamen2015
       UsersList check = new UsersList();
       string OnlyNumbersLettersUnderscore = @"^[a-zA-Z0-9_æøå]+$";
 
-      if (Regex.IsMatch(username, OnlyNumbersLettersUnderscore) && check.UsernameExistValidation(username))
+      if(check.UsernameExistValidation(username))
+      {
+        throw new UsernameExistException();
+      }
+
+      if (Regex.IsMatch(username, OnlyNumbersLettersUnderscore))
       {
         Username = username;
         return true;
       }
-      return false;
+      throw new UsernameIncorrectlyException();
     }
 
     private bool FirstnameValidation(string firstname)
@@ -130,7 +131,7 @@ namespace OOPEksamen2015
         Firstname = firstname;
         return true;
       }
-      return false;
+      throw new FirstnameIncorrectlyException();
     }
 
     private bool LastnameValidation(string lastname)
@@ -141,7 +142,7 @@ namespace OOPEksamen2015
         Lastname = lastname;
         return true;
       }
-      return false;
+      throw new LastnameIncorrectlyException();
     }
 
     private bool EmailValidation(string email)
@@ -211,7 +212,7 @@ namespace OOPEksamen2015
 
     #region IComparable Members
 
-    // MSDN inspireret, ændret argument text og objekterne.
+    // MSDN inspired
     public int CompareTo(object obj)
     {
       if (obj == null) return 1;
