@@ -6,9 +6,14 @@ using System.IO;
 
 namespace OOPEksamen2015
 {
-  public class ProductCatalog
+  public class ProductCatalog : LogsInformation
   {
-    private string filePath = @"logs/ProductCatalog.csv";
+    private string filePath;
+
+    public ProductCatalog()
+    {
+      filePath = GetPath("ProductCatalog.csv");
+    }
 
     // inspireret af http://stackoverflow.com/questions/5282999/reading-csv-file-and-storing-values-into-an-array
     public List<Product> GetList()
@@ -16,7 +21,7 @@ namespace OOPEksamen2015
       List<Product> productList = new List<Product>();
       int i = 0;
 
-      var reader = new StreamReader(File.OpenRead(filePath), Encoding.Default);
+      var reader = new StreamReader(File.OpenRead(filePath), Encoding.GetEncoding("ISO-8859-1"));
  
       while (!reader.EndOfStream)
       {
@@ -31,7 +36,7 @@ namespace OOPEksamen2015
           product.ProductID = Convert.ToInt32(values[0]);
           product.Name = RemovesHTML(values[1]);
           product.Price = Convert.ToDouble(values[2]);
-          product.Active = Convert.ToBoolean(Convert.ToInt32(values[3]));
+          product.Active = Convert.ToBoolean(TrueFalse(values[3]));
 
           productList.Add(product);
         }
@@ -40,6 +45,7 @@ namespace OOPEksamen2015
           i = 1;
         }
       }
+      reader.Close();
 
       return productList;
     }
@@ -48,7 +54,7 @@ namespace OOPEksamen2015
     {
       List<string> products = new List<string>();
 
-      using (StreamReader reader = new StreamReader(filePath, Encoding.UTF8))
+      using (StreamReader reader = new StreamReader(filePath, Encoding.GetEncoding("ISO-8859-1")))
       {
         string product;
 
@@ -71,7 +77,7 @@ namespace OOPEksamen2015
         }
       }
 
-      using (StreamWriter writer = new StreamWriter(filePath, false))
+      using (StreamWriter writer = new StreamWriter(filePath, false, Encoding.Default))
       {
         foreach (string product in products)
           writer.WriteLine(product);

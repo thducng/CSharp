@@ -21,7 +21,7 @@ namespace OOPEksamen2015
       return String.Format("TransactionID: {0}\nAmount: {1}\nDate: {2}", TransactionID, Amount, Date);
     }
 
-    public virtual bool Execute() { return false; }
+    public virtual bool Execute(Stregsystem CS) { return false; }
 
 
     #region IComparable Members

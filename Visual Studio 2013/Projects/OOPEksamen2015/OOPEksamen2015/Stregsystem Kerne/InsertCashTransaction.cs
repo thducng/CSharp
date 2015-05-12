@@ -7,9 +7,9 @@ namespace OOPEksamen2015
 {
   public class InsertCashTransaction : Transaction
   {
-    public override bool Execute()
+    public override bool Execute(Stregsystem CS)
     {
-      TransactionsList transactionList = new TransactionsList();
+      TransactionsList transactionList = new TransactionsList(CS);
       UsersList usersList = new UsersList();
 
       User.Balance = User.Balance + Amount;

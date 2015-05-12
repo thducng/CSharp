@@ -42,35 +42,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BuyTransaction.cs" />
-    <Compile Include="FirstnameIncorrectlyException.cs" />
-    <Compile Include="InactiveProductException.cs" />
-    <Compile Include="InsertCashTransaction.cs" />
-    <Compile Include="InsufficientCreditsException.cs" />
-    <Compile Include="IStregsystem.cs" />
-    <Compile Include="IStregsystemUI.cs" />
-    <Compile Include="LastnameIncorrectlyException.cs" />
-    <Compile Include="Product.cs" />
-    <Compile Include="ProductCatalog.cs" />
+    <Compile Include="Stregsystem Kerne\BuyTransaction.cs" />
+    <Compile Include="Exceptions\FirstnameIncorrectlyException.cs" />
+    <Compile Include="Exceptions\InactiveProductException.cs" />
+    <Compile Include="Stregsystem Kerne\InsertCashTransaction.cs" />
+    <Compile Include="Exceptions\InsufficientCreditsException.cs" />
+    <Compile Include="Interface\IStregsystem.cs" />
+    <Compile Include="Interface\IStregsystemUI.cs" />
+    <Compile Include="Exceptions\LastnameIncorrectlyException.cs" />
+    <Compile Include="Stregsystem Kerne\LogsInformation.cs" />
+    <Compile Include="Stregsystem Kerne\Product.cs" />
+    <Compile Include="Stregsystem Kerne\ProductCatalog.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SeasonalProduct.cs" />
-    <Compile Include="SeasonProductCatalog.cs" />
-    <Compile Include="Stregsystem.cs" />
-    <Compile Include="StregsystemCLI.cs" />
-    <Compile Include="StregsystemCommandParser.cs" />
-    <Compile Include="Transaction.cs" />
-    <Compile Include="TransactionsList.cs" />
-    <Compile Include="User.cs" />
-    <Compile Include="UsernameExistException.cs" />
-    <Compile Include="UsernameIncorrectlyException.cs" />
-    <Compile Include="UserNotFoundException.cs" />
-    <Compile Include="UsersList.cs" />
+    <Compile Include="Stregsystem Kerne\SeasonalProduct.cs" />
+    <Compile Include="Stregsystem Kerne\SeasonProductCatalog.cs" />
+    <Compile Include="Stregsystem Kerne\Stregsystem.cs" />
+    <Compile Include="StregsystemUI\StregsystemCLI.cs" />
+    <Compile Include="StregsystemUI\StregsystemCommandParser.cs" />
+    <Compile Include="Stregsystem Kerne\Transaction.cs" />
+    <Compile Include="Stregsystem Kerne\TransactionsList.cs" />
+    <Compile Include="Stregsystem Kerne\User.cs" />
+    <Compile Include="Exceptions\UsernameExistException.cs" />
+    <Compile Include="Exceptions\UsernameIncorrectlyException.cs" />
+    <Compile Include="Exceptions\UserNotFoundException.cs" />
+    <Compile Include="Stregsystem Kerne\UsersList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Logs\ProductCatalog.csv" />
+    <None Include="Logs\SeasonProductCatalog.csv" />
+    <None Include="Logs\TransactionList.csv" />
+    <None Include="Logs\TransactionsList.csv" />
+    <None Include="Logs\UsersList.csv" />
     <None Include="MainClassDiagram.cd" />
-    <None Include="OOPEksamen2015.cd" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

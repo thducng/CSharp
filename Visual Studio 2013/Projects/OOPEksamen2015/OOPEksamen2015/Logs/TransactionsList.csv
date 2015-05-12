@@ -1,0 +1,19 @@
+TransactionType;TransactionID;Username;ProductID;Amount;Price;Date
+InsertCashTransaction;1;Tinny;EMPTY;10000;EMPTY;09-05-2015 18:56:21
+BuyTransaction;2;Tinny;1837;0;1200;09-05-2015 19:14:01
+BuyTransaction;3;Tinny;1837;0;1200;09-05-2015 20:00:18
+BuyTransaction;4;Tinny;34;0;1300;09-05-2015 20:30:53
+BuyTransaction;5;Tinny;1837;0;1200;09-05-2015 20:31:32
+BuyTransaction;6;Tinny;34;0;1300;09-05-2015 20:31:54
+BuyTransaction;7;Tinny;37;0;1350;09-05-2015 20:37:52
+BuyTransaction;8;Tinny;1837;0;1200;09-05-2015 20:42:18
+InsertCashTransaction;9;Tinny;EMPTY;20000;EMPTY;09-05-2015 20:43:21
+InsertCashTransaction;10;SpicyGG;EMPTY;1205;EMPTY;10-05-2015 19:17:34
+BuyTransaction;11;SpicyGG;1837;0;1200;10-05-2015 19:17:43
+InsertCashTransaction;12;vPenguiin;EMPTY;1230;EMPTY;10-05-2015 19:19:49
+BuyTransaction;13;vPenguiin;1837;0;1200;10-05-2015 19:19:56
+InsertCashTransaction;14;SpicyGG;EMPTY;1240;EMPTY;10-05-2015 19:20:30
+BuyTransaction;15;SpicyGG;1837;0;1200;10-05-2015 19:20:41
+InsertCashTransaction;16;vPenguiin;EMPTY;1210;EMPTY;10-05-2015 19:21:22
+BuyTransaction;17;vPenguiin;1837;0;1200;10-05-2015 19:21:27
+BuyTransaction;2;vPenguiin;1837;0;1200;12-05-2015 16:41:22

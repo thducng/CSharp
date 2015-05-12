@@ -37,7 +37,7 @@ namespace OOPEksamen2015
 
     #endregion
 
-    #region Methods
+    #region Public Methods
 
     public override string ToString()
     {

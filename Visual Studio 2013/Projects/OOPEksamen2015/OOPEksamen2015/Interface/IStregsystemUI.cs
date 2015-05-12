@@ -7,7 +7,9 @@ namespace OOPEksamen2015
 {
   public interface IStregsystemUI
   {
-    void DisplayUserNotFound(string username);
+    void Close();
+
+    void DisplayUserNotFound();
 
     void DisplayProductNotFound();
 
@@ -21,9 +23,9 @@ namespace OOPEksamen2015
 
     void DisplayUserBuysMultipleProduct(User user, string amount, Product product);
 
-    void DisplayInsufficientCash(User user);
+    void DisplayInsufficientCash();
 
-    string DisplayStartMenu(List<Product> activeProducts, List<SeasonalProduct> activeSeasonalProducts);
+    void DisplayStartMenu();
 
     void DisplayBuyTransactionHistory(List<BuyTransaction> transactionList, int number);
 
@@ -31,13 +33,16 @@ namespace OOPEksamen2015
 
     void DisplayAllUsers();
 
-    void DisplaySuccessBuyTransaction(User user, Product product);
-
     void DisplaySuccessCashTransaction(User user, int amount);
 
     void DisplayLowBalance(User user, Product product);
 
     void DisplayAmountError();
+
+    void DisplayActiveDeactiveProduct(Product product, bool state);
+
+    void DisplayCreditOnOffProduct(Product product, bool state);
+
 
   }
 }

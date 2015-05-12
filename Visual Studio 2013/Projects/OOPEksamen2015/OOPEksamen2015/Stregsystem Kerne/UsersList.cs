@@ -7,9 +7,14 @@ using System.Text.RegularExpressions;
 
 namespace OOPEksamen2015
 {
-  public class UsersList
+  public class UsersList : LogsInformation
   {
-    private string filePath = @"logs/UsersList.csv";
+    private string filePath;
+
+    public UsersList()
+    {
+      filePath = GetPath("UsersList.csv");
+    }
 
     // inspireret af http://stackoverflow.com/questions/5282999/reading-csv-file-and-storing-values-into-an-array
     public List<User> GetList()

@@ -8,7 +8,36 @@ namespace OOPEksamen2015
   public class Stregsystem : IStregsystem
   {
 
+    #region Constructor and Properties
+
+    private List<User> UserList = new List<User>();
+    private List<Product> ProductList = new List<Product>();
+    private List<SeasonalProduct> SeasonalProductList = new List<SeasonalProduct>();
+    private List<BuyTransaction> BTransactionList = new List<BuyTransaction>();
+    private List<InsertCashTransaction> CTransactionList = new List<InsertCashTransaction>();
+
+    public Stregsystem()
+    {
+  
+    }
+
+    #endregion
+
     #region IStregsystem Members
+
+    public void LoadList()
+    {
+      TransactionsList transactionsList = new TransactionsList(this);
+      UsersList usersList = new UsersList();
+      ProductCatalog productCatalog = new ProductCatalog();
+      SeasonProductCatalog seasonalProductCatalog = new SeasonProductCatalog();
+
+      UserList = usersList.GetList();
+      ProductList = productCatalog.GetList();
+      SeasonalProductList = seasonalProductCatalog.GetList();
+      BTransactionList = transactionsList.GetBuyList();
+      CTransactionList = transactionsList.GetCashList();   
+    }
 
     public bool BuyProduct(User user, Product product)
     {
@@ -16,19 +45,13 @@ namespace OOPEksamen2015
       newTransaction.User = user;
       newTransaction.Product = product;
 
-      try
+      ExecuteTransaction(newTransaction);
+      if (newTransaction.User.isLowBalance())
       {
-        ExecuteTransaction(newTransaction);
-        if (newTransaction.User.isLowBalance())
-        {
-          return false; // Hvis denne metode retunere false = low balance, but successful
-        }
-        return true; // Hvis denne metode retunere true = succesful
+        return false;
       }
-      catch (InsufficientCreditsException)
-      {
-        throw new InsufficientCreditsException(); // hvis denne exception bliver kastet, unsuccessful
-      }
+      return true;
+
     }
 
     public bool BuyMultipleProducts(User user, string _amount, Product product)
@@ -38,33 +61,26 @@ namespace OOPEksamen2015
       newTransaction.Product = product;
       int amount;
 
-      try
+      if (AmountValidation(_amount, out amount))
       {
-        if (AmountValidation(_amount, out amount))
+        if ((user.Balance - product.Price * amount) < 0)
         {
-          if ((user.Balance - product.Price * amount) < 0)
-          {
-            throw new InsufficientCreditsException();
-          }
-          for (int i = 0; i < amount; i++)
-          {
-            ExecuteTransaction(newTransaction);
-          }
+          throw new InsufficientCreditsException();
         }
-        else
+        for (int i = 0; i < amount; i++)
         {
-          throw new ArgumentException("Amount isnt a number");
+          ExecuteTransaction(newTransaction);
         }
-        if (newTransaction.User.isLowBalance())
-        {
-          return false; // Hvis denne metode retunere false = low balance, but successful
-        }
-        return true; // Hvis denne metode retunere true = succesful
       }
-      catch (InsufficientCreditsException)
+      else
       {
-        throw new InsufficientCreditsException(); // hvis denne exception bliver kastet, unsuccessful
+        throw new ArgumentException("Amount isnt a number");
       }
+      if (newTransaction.User.isLowBalance())
+      {
+        return false;
+      }
+      return true;
     }
 
     public void AddCreditsToAccount(User user, int amount)
@@ -78,27 +94,19 @@ namespace OOPEksamen2015
 
     public void ExecuteTransaction(Transaction transaction)
     {
-      try
-      {
-        transaction.Execute();
-      }
-      catch (InsufficientCreditsException)
-      {
-        throw new InsufficientCreditsException();
-      }
+      transaction.Execute(this);
     }
 
     public Product GetProduct(string command)
     {
-      ProductCatalog productCatalog = new ProductCatalog();
       Product product = new Product();
       int productID = 0;
 
       if(BuyProductValidation(command, out productID))
       {
-        foreach (Product _product in productCatalog.GetList())
+        foreach (Product _product in ProductList)
         {
-          if (_product.ProductID == productID && _product.Active)
+          if (_product.ProductID == productID)
           {
             return _product;
           }
@@ -110,18 +118,15 @@ namespace OOPEksamen2015
 
     public List<User> GetUserList()
     {
-      UsersList userList = new UsersList();
-
-      return userList.GetList();
+      return UserList;
     }
 
     public User GetUser(string command)
     {
-      UsersList usersList = new UsersList();
       User user = new User();
       string username = GetUsername(command);
 
-      foreach (User _user in usersList.GetList())
+      foreach (User _user in UserList)
       {
         if (_user.Username == username)
         {
@@ -134,19 +139,37 @@ namespace OOPEksamen2015
 
     public List<BuyTransaction> GetBuyTransactionList(User user)
     {
-      TransactionsList transactionList = new TransactionsList();
-      return transactionList.GetBuyList(user);
+      List<BuyTransaction> bList = new List<BuyTransaction>();
+
+      foreach (BuyTransaction bTransaction in BTransactionList)
+      {
+        if (user.Equals(bTransaction.User))
+        {
+          bList.Add(bTransaction);
+        }
+      }
+
+      return bList;
     }
 
     public List<InsertCashTransaction> GetCashTransactionList(User user)
     {
-      TransactionsList transactionList = new TransactionsList();
-      return transactionList.GetCashList(user);
+      List<InsertCashTransaction> cList = new List<InsertCashTransaction>();
+
+      foreach (InsertCashTransaction cTransaction in CTransactionList)
+      {
+        if (user.Equals(cTransaction.User))
+        {
+          cList.Add(cTransaction);
+        }
+      }
+
+      return cList;
     }
 
     public List<BuyTransaction> GetTransactionList()
     {
-      TransactionsList transactionList = new TransactionsList();
+      TransactionsList transactionList = new TransactionsList(this);
       return transactionList.GetList();
     }
 
@@ -169,9 +192,8 @@ namespace OOPEksamen2015
     public List<Product> GetActiveProducts()
     {
       List<Product> activeProducts = new List<Product>();
-      ProductCatalog productCatalog = new ProductCatalog();
 
-      foreach(Product product in productCatalog.GetList())
+      foreach(Product product in ProductList)
       {
         if (product.Active)
         {
@@ -185,9 +207,8 @@ namespace OOPEksamen2015
     public List<SeasonalProduct> GetSeasonalProducts()
     {
       List<SeasonalProduct> activeProducts = new List<SeasonalProduct>();
-      SeasonProductCatalog seasonalProductCatalog = new SeasonProductCatalog();
 
-      foreach (SeasonalProduct seasonalProduct in seasonalProductCatalog.GetList())
+      foreach (SeasonalProduct seasonalProduct in SeasonalProductList)
       {
         seasonalProduct.Activate();
 
@@ -201,6 +222,8 @@ namespace OOPEksamen2015
     }
 
     #endregion
+
+    #region Private Methods
 
     private bool BuyProductValidation(string command, out int productID)
     {
@@ -229,6 +252,7 @@ namespace OOPEksamen2015
       return commandSplit[0];
     }
 
+    #endregion
 
   }
 }

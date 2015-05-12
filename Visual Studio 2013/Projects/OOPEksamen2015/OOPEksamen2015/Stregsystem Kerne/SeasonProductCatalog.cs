@@ -6,10 +6,15 @@ using System.IO;
 
 namespace OOPEksamen2015
 {
-  public class SeasonProductCatalog
+  public class SeasonProductCatalog : LogsInformation
   {
 
-    private string filePath = @"logs/SeasonProductCatalog.csv";
+    private string filePath;
+
+    public SeasonProductCatalog()
+    {
+      filePath = GetPath("SeasonProductCatalog.csv");
+    }
 
     // inspireret af http://stackoverflow.com/questions/5282999/reading-csv-file-and-storing-values-into-an-array
     public List<SeasonalProduct> GetList()

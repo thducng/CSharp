@@ -7,6 +7,9 @@ namespace OOPEksamen2015
 {
   public class StregsystemCLI : IStregsystemUI
   {
+
+    #region Constructor and Properties
+
     public Stregsystem stregsystem;
 
     public StregsystemCLI(Stregsystem _stregsystem)
@@ -14,21 +17,29 @@ namespace OOPEksamen2015
       stregsystem = _stregsystem;
     }
 
+    #endregion
+
     public void Start(StregsystemCommandParser parser)
     {
-      string command = parser.StartMenu();
-      do
+      stregsystem.LoadList();
+      DisplayStartMenu();
+      while(true)
       {
-        command = parser.ParseCommand(command);
-      } while (command != ":q" && command != ":quit" && command != ":Q" && command != ":Quit");
+        parser.ParseCommand(DisplayCommandScreen());
+      }
 
     }
 
     #region IStregsystemUI Members
 
-    public void DisplayUserNotFound(string username)
+    public void Close()
     {
-      Console.WriteLine("\n{0} is not a part of this database, try again", username);
+      Environment.Exit(0);
+    }
+
+    public void DisplayUserNotFound()
+    {
+      Console.WriteLine("\nUser is not a part of this database, try again");
     }
 
     public void DisplayProductNotFound()
@@ -51,12 +62,12 @@ namespace OOPEksamen2015
 
     public void DisplayCommandNotFoundMessage()
     {
-      Console.WriteLine("Entered command was invalid");
+      Console.WriteLine("\nEntered command was invalid");
     }
 
     public void DisplayAdminCommandNotFoundMessage()
     {
-      Console.WriteLine("Entered admin command was invalid");
+      Console.WriteLine("\nEntered admin command was invalid");
     }
 
     public void DisplayUserBuysProduct(User user, Product product)
@@ -69,28 +80,30 @@ namespace OOPEksamen2015
       Console.WriteLine("\nTransaction was succesful, {0} has bought {1} x {2} for {3} DKK each", user.Username, amount ,product.Name, product.Price);
     }
 
-    public void DisplayInsufficientCash(User user)
+    public void DisplayInsufficientCash()
     {
-      Console.WriteLine(String.Format("\nUser {0} has insuffiecient credits, transaction declined!", user.Username));
+      Console.WriteLine(String.Format("\nUser has insuffiecient credits, transaction declined!"));
     }
 
-    public void DisplayGeneralError()
+    public void DisplayGeneralError(string ex)
     {
-      throw new NotImplementedException();
+      Console.WriteLine(ex);
     }
 
-    public string DisplayStartMenu(List<Product> activeProducts, List<SeasonalProduct> activeSeasonalProducts)
+    public void DisplayStartMenu()
     {
+      List<Product> activeProducts = new List<Product>();
+      List<SeasonalProduct> activeSeasonalProducts = new List<SeasonalProduct>();
+
+      activeProducts = stregsystem.GetActiveProducts();
+      activeSeasonalProducts = stregsystem.GetSeasonalProducts();
+
       Console.Clear();
       Console.WriteLine("Welcome to OOP 2015 Exam Assignment,\nThis is Stregsystem ready to take your command!");
       Console.WriteLine("____________________________________________________\n");
       Console.WriteLine("These are the current active products: \n");
 
       DisplayAllActiveProducts(activeProducts, activeSeasonalProducts);
-
-      Console.WriteLine("\n____________________________________________________");
-      Console.Write("\nEnter Command: ");
-      return Console.ReadLine();
     }
 
     public void DisplayAllActiveProducts(List<Product> activeProducts, List<SeasonalProduct> activeSeasonalProducts)
@@ -282,11 +295,6 @@ namespace OOPEksamen2015
       }
     }
 
-    public void DisplaySuccessBuyTransaction(User user, Product product)
-    {
-      
-    }
-
     public void DisplaySuccessCashTransaction(User user, int amount)
     {
       Console.WriteLine("\nTransaction was succesful, {0} has inserted {1} DKK", user.Username, amount);
@@ -301,6 +309,30 @@ namespace OOPEksamen2015
     public void DisplayAmountError()
     {
       Console.WriteLine("\nThe amount part wasnt entered correctly,\nExample: 'username' 'amount' 'product'");
+    }
+
+    public void DisplayActiveDeactiveProduct(Product product, bool state)
+    {
+      if (state)
+      {
+        Console.WriteLine("\n{0} is now Activated!", product.Name);
+      }
+      else
+      {
+        Console.WriteLine("\n{0} is now Deactivated!", product.Name);
+      }
+    }
+
+    public void DisplayCreditOnOffProduct(Product product, bool state)
+    {
+      if (state)
+      {
+        Console.WriteLine("\n{0} can now be bought with credit!", product.Name);
+      }
+      else
+      {
+        Console.WriteLine("\n{0} can now not be bought with credit!", product.Name);
+      }
     }
 
     #endregion

@@ -11,7 +11,7 @@ namespace OOPEksamen2015
 
     public double Price { get; set; }
 
-    public override bool Execute()
+    public override bool Execute(Stregsystem CS)
     {
       double newBalance = 0.0;
       newBalance = User.Balance - Product.Price;
@@ -22,7 +22,7 @@ namespace OOPEksamen2015
       }
       else
       {
-        if (SaveTransaction(this))
+        if (SaveTransaction(this, CS))
         {
           return true;
         }
@@ -35,9 +35,9 @@ namespace OOPEksamen2015
       return String.Format("TransactionID: {0} User: {1} Product: {2} Price: {3} DKK Date: {4}", TransactionID, User, Product, Price, Date);
     }
  
-    private bool SaveTransaction(BuyTransaction transaction)
+    private bool SaveTransaction(BuyTransaction transaction, Stregsystem CS)
     {
-      TransactionsList transactionList = new TransactionsList();
+      TransactionsList transactionList = new TransactionsList(CS);
       UsersList usersList = new UsersList();
 
       User.Balance = User.Balance - Product.Price;
