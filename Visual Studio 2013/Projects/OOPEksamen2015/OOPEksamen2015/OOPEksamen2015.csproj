@@ -43,11 +43,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuyTransaction.cs" />
+    <Compile Include="FirstnameIncorrectlyException.cs" />
     <Compile Include="InactiveProductException.cs" />
     <Compile Include="InsertCashTransaction.cs" />
     <Compile Include="InsufficientCreditsException.cs" />
     <Compile Include="IStregsystem.cs" />
     <Compile Include="IStregsystemUI.cs" />
+    <Compile Include="LastnameIncorrectlyException.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="ProductCatalog.cs" />
     <Compile Include="Program.cs" />
@@ -60,10 +62,14 @@
     <Compile Include="Transaction.cs" />
     <Compile Include="TransactionsList.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="UsernameExistException.cs" />
+    <Compile Include="UsernameIncorrectlyException.cs" />
+    <Compile Include="UserNotFoundException.cs" />
     <Compile Include="UsersList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="MainClassDiagram.cd" />
     <None Include="OOPEksamen2015.cd" />
   </ItemGroup>
   <ItemGroup />

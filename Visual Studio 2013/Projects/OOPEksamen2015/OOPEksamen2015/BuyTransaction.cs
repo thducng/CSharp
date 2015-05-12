@@ -16,9 +16,9 @@ namespace OOPEksamen2015
       double newBalance = 0.0;
       newBalance = User.Balance - Product.Price;
 
-      if (newBalance < 0)
+      if (newBalance < 0 && !Product.CanBeBoughtOnCredit)
       {
-        throw new InsufficientCreditsException(String.Format("User {0} has insuffiecient credits, transaction declined!", User.Username));
+        throw new InsufficientCreditsException();
       }
       else
       {

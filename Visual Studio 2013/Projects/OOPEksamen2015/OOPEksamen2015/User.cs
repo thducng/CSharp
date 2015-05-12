@@ -66,34 +66,33 @@ namespace OOPEksamen2015
         switch (infoSplit[0])
         {
           case "1":
-            EmailValidation(infoSplit[1]);
-            return true;
+            if (EmailValidation(infoSplit[1]))
+              return true;
+            break;
           case "2":
-            BirthdayValidation(infoSplit[1]);
-            return true;
-          case "d":
-            return false;
-          default:
-            return true;
+            if (BirthdayValidation(infoSplit[1]))
+              return true;
+            break;
         }
       }
-      return true;
+      return false;
     }
 
     public bool UserFirstLastNameValidation(string _Username, string _Firstname, string _Lastname)
     {
       if (!UsernameValidation(_Username))
       {
-        return false;
+        throw new UsernameExistException();
       }
       if (!FirstnameValidation(_Firstname))
       {
-        return false;
+        throw new FirstnameIncorrectlyException();
       }
       if (!LastnameValidation(_Lastname))
       {
-        return false;
+        throw new LastnameIncorrectlyException();
       }
+
       return true;
     }
 

@@ -19,10 +19,12 @@ namespace OOPEksamen2015
     public string StartMenu()
     {
       List<Product> activeProducts = new List<Product>();
+      List<SeasonalProduct> activeSeasonalProducts = new List<SeasonalProduct>();
 
       activeProducts = stregsystem.GetActiveProducts();
+      activeSeasonalProducts = stregsystem.GetSeasonalProducts();
 
-      return cli.DisplayStartMenu(activeProducts);
+      return cli.DisplayStartMenu(activeProducts, activeSeasonalProducts);
     }
 
     public string ParseCommand(string command)
@@ -68,6 +70,9 @@ namespace OOPEksamen2015
         case ":newuser":
           NewUser();
           break;
+        case ":newseasonalproduct":
+          NewSeasonalProduct();
+          break;
         default:
           cli.DisplayAdminCommandNotFoundMessage();
           break;
@@ -90,7 +95,7 @@ namespace OOPEksamen2015
           BuyProduct(command);
           break;
         case "BuyMultipleProduct":
-          Console.WriteLine("\nBuyMultipleProduct");
+          BuyMultipleProducts(command);
           break;
         case "InvalidCommand":
           cli.DisplayCommandNotFoundMessage();
@@ -99,15 +104,37 @@ namespace OOPEksamen2015
       return cli.DisplayCommandScreen();
     }
 
-    private void NewUser()
+    private bool NewUser()
     {
-      stregsystem.CreateNewUser(cli.DisplayUserCreation());
+      try
+      {
+        stregsystem.CreateNewUser(cli.DisplayUserCreation());
+        return true;
+      }
+      catch (ArgumentException)
+      {
+        return false;
+      }
+    }
+
+    private bool NewSeasonalProduct()
+    {
+      try
+      {
+        stregsystem.CreateNewSeasonalProduct(cli.DisplaySeasonalProductCreation());
+        return true;
+      }
+      catch (ArgumentException)
+      {
+        return false;
+      }
     }
 
     private string CommandType(string command)
     {
       string[] commandSplit = command.Split(' ');
 
+      if (command == "") { return "InvalidCommand"; }
       switch (commandSplit.Length)
       {
         case 1:
@@ -131,7 +158,7 @@ namespace OOPEksamen2015
       try
       {
         User user = stregsystem.GetUser(command);
-        List<BuyTransaction> transactionList = stregsystem.GetBuyTransactionList();
+        List<BuyTransaction> transactionList = stregsystem.GetBuyTransactionList(user);
         cli.DisplayUserInfo(user, transactionList);
 
         return true;
@@ -155,7 +182,7 @@ namespace OOPEksamen2015
 
         if (stregsystem.BuyProduct(user, product))
         {
-          cli.DisplaySuccessBuyTransaction(user, product);
+          cli.DisplayUserBuysProduct(user, product);
         }
         else
         {
@@ -163,7 +190,7 @@ namespace OOPEksamen2015
         }
         return true;
       }
-      catch (ArgumentException)
+      catch (UserNotFoundException)
       {
         cli.DisplayUserNotFound(command);
         return false;
@@ -176,6 +203,49 @@ namespace OOPEksamen2015
       catch (InactiveProductException)
       {
         cli.DisplayProductNotFound();
+        return false;
+      }
+    }
+
+    private bool BuyMultipleProducts(string command)
+    {
+      string[] commandSplit = command.Split(' ');
+      User user = new User();
+      Product product = new Product();
+
+      try
+      {
+        user = stregsystem.GetUser(commandSplit[0]);
+        product = stregsystem.GetProduct(commandSplit[2]);
+
+        if (stregsystem.BuyMultipleProducts(user, commandSplit[1], product))
+        {
+          cli.DisplayUserBuysMultipleProduct(user, commandSplit[1], product);
+        }
+        else
+        {
+          cli.DisplayLowBalance(user, product); 
+        }
+        return true;
+      }
+      catch(UserNotFoundException)
+      {
+        cli.DisplayUserNotFound(commandSplit[0]);
+        return false;
+      }
+      catch (InsufficientCreditsException)
+      {
+        cli.DisplayInsufficientCash(user);
+        return false;
+      }
+      catch (InactiveProductException)
+      {
+        cli.DisplayProductNotFound();
+        return false;
+      }
+      catch (ArgumentException)
+      {
+        cli.DisplayAmountError();
         return false;
       }
     }
@@ -199,6 +269,6 @@ namespace OOPEksamen2015
 
       return true;
     }
-  
+
   }
 }

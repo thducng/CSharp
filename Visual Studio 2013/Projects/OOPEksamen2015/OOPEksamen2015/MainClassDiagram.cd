@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="OOPEksamen2015.BuyTransaction">
+    <Position X="0.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAQAQAAAAQEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BuyTransaction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOPEksamen2015.FirstnameIncorrectlyException">
+    <Position X="9.75" Y="3.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FirstnameIncorrectlyException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOPEksamen2015.InactiveProductException">
+    <Position X="7.25" Y="5.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>InactiveProductException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOPEksamen2015.InsertCashTransaction">
+    <Position X="2.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>InsertCashTransaction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOPEksamen2015.InsufficientCreditsException">
+    <Position X="7.25" Y="2.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>InsufficientCreditsException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOPEksamen2015.LastnameIncorrectlyException">
+    <Position X="7.25" Y="3.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>LastnameIncorrectlyException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOPEksamen2015.Product">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EgAAAAAAAQAAAAAAAAAAAAQAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOPEksamen2015.ProductCatalog">
+    <Position X="3" Y="7.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAEAAAAAAAAAAAAI=</HashCode>
+      <FileName>ProductCatalog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOPEksamen2015.Program">
+    <Position X="7.25" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOPEksamen2015.SeasonalProduct">
+    <Position X="4.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAAAAIAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>SeasonalProduct.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOPEksamen2015.SeasonProductCatalog">
+    <Position X="0.5" Y="7.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>SeasonProductCatalog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOPEksamen2015.Stregsystem" BaseTypeListCollapsed="true">
+    <Position X="15.5" Y="5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AQAAgABCAAAAAAAAQAACAAAAAAAAAAgIEAAAjCQAAQA=</HashCode>
+      <FileName>Stregsystem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="OOPEksamen2015.StregsystemCLI" BaseTypeListCollapsed="true">
+    <Position X="17.75" Y="5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>YAAAAAICACAACCCAAACAQAACKAiAAgABYAAAABAAAAA=</HashCode>
+      <FileName>StregsystemCLI.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="OOPEksamen2015.StregsystemCommandParser">
+    <Position X="12.75" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAACACAQAAEAIAAAAAAAgABAAAAAABgUAA=</HashCode>
+      <FileName>StregsystemCommandParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOPEksamen2015.Transaction">
+    <Position X="1.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAQEAAAAAACgAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Transaction.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OOPEksamen2015.TransactionsList">
+    <Position X="7.5" Y="7.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQIAEAAAgAAAAEAAAAAACAQAFAI=</HashCode>
+      <FileName>TransactionsList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOPEksamen2015.User" BaseTypeListCollapsed="true">
+    <Position X="12.75" Y="5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEEEAACIAQAQMgQgAAAwAAAAIAIAgAAACIAAAAAA=</HashCode>
+      <FileName>User.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="OOPEksamen2015.UsernameExistException">
+    <Position X="9.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UsernameExistException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOPEksamen2015.UsernameIncorrectlyException">
+    <Position X="9.75" Y="5.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UsernameIncorrectlyException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOPEksamen2015.UserNotFoundException">
+    <Position X="9.75" Y="2.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UserNotFoundException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOPEksamen2015.UsersList">
+    <Position X="5" Y="7.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAgAAAAAQAAAAAAAQAAAEAAAABAAAAAAAI=</HashCode>
+      <FileName>UsersList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="OOPEksamen2015.IStregsystem">
+    <Position X="15.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAQAACAAAAAAAAAAAIEAAACCQAAQA=</HashCode>
+      <FileName>IStregsystem.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="OOPEksamen2015.IStregsystemUI">
+    <Position X="17.75" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>YAAAAAICAAAACCCAAACAQAACIAiAAAABYAAAAAAAAAA=</HashCode>
+      <FileName>IStregsystemUI.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

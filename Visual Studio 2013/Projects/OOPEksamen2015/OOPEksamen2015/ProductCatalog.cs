@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
-using System.Windows.Forms;
 
 namespace OOPEksamen2015
 {
@@ -43,6 +42,42 @@ namespace OOPEksamen2015
       }
 
       return productList;
+    }
+
+    public bool UpdateProduct(Product updatedProduct)
+    {
+      List<string> products = new List<string>();
+
+      using (StreamReader reader = new StreamReader(filePath, Encoding.UTF8))
+      {
+        string product;
+
+        while ((product = reader.ReadLine()) != null)
+        {
+          if (product.Contains(";"))
+          {
+            string[] values = product.Split(';');
+
+            if (values[0] == updatedProduct.ProductID.ToString())
+            {
+              values[1] = updatedProduct.Name;
+              values[2] = updatedProduct.Price.ToString();
+              values[3] = updatedProduct.Active.ToString();
+              product = string.Join(";", values);
+            }
+          }
+
+          products.Add(product);
+        }
+      }
+
+      using (StreamWriter writer = new StreamWriter(filePath, false))
+      {
+        foreach (string product in products)
+          writer.WriteLine(product);
+      }
+
+      return true;
     }
 
     public string RemovesHTML(string name)

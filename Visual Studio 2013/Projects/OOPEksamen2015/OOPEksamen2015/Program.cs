@@ -37,24 +37,34 @@ namespace OOPEksamen2015
      *  - 163 // Den indtager ikke exception for inactive product 
      * 
      * 
-     * Buy Multiple Products:
+     * Buy Multiple Products: CHECK!
      *  - BuyMultipleProducts method skal laves ind under commandparser
      *    - Den skal kunne skille antal og product id fra command line
      *    - Check i denne rækkefølge: User -> Product ID -> Amount
      *    - Kør BuyProduct method med User og ProductID, Amount antal gange!
      *    - Display Succes user bought amount times product name.
      *    
-     * Exceptions:
+     * Exceptions: CHECK!
      *  - Der skal laves en masse exceptions, så man kan display en rigtig message.
      *    
+     * SeasonProducts:
+     *  - CSV fil laves VIRKER!
+     *  - Mulighed for at tilføje nye season product, ved brug af admincommand VIRKER!
+     *  - mulighed for at skrive season for at se season product og hvor længe den er aktiv VIRKER!
+     *  - Find en måde at lave season productID unik.
+     *  - Købe season
+     *  
+     * 
+     * 
      * Bug:
      *  - Efter man har brugt kommando så skal man bruge start før at man kan lave en ny kommando
-     *    - try Tinny -> :userlist
-     *  - Ved usercreation skal man kunne quit!
+     *    - try Tinny -> :userlist Fix!
+     *  - Ved usercreation skal man kunne quit! Fix!
      *  - ved usercreation hvis username allerede existere får man en forkert meddelse
-     *    - Den skal use this Username already exist
+     *    - Den skal use this Username already exist Fix!
      *  - UserInformation printer alle transactions, denne skal fixes således den kun viser USERENS transactions!
-     *    - SpicyGG har samme transactions som vPenguiin og Tinny.
+     *    - SpicyGG har samme transactions som vPenguiin og Tinny. Fix!
+     *  - Transactions isnt sorted by latest first! Fix!
      * 
      */
 

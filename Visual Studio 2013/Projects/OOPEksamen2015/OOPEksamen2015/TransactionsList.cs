@@ -11,9 +11,10 @@ namespace OOPEksamen2015
   {
     private string filePath = @"logs/TransactionList.csv";
 
-    public List<BuyTransaction> GetBuyList()
+    public List<BuyTransaction> GetBuyList(User user)
     {
       List<BuyTransaction> transactionList = new List<BuyTransaction>();
+      Stregsystem CS = new Stregsystem();
       int i = 0;
 
       checkCreateTransactionList();
@@ -27,13 +28,12 @@ namespace OOPEksamen2015
         // Skipping first line of the file. (This Part not taken from source!)
         if (i == 1)
         {
-            if (values[0] == "BuyTransaction")
+            if (values[0] == "BuyTransaction" && user.Equals(CS.GetUser(values[2])))
             {
               BuyTransaction transaction = new BuyTransaction();
-              Stregsystem CS = new Stregsystem();
 
               transaction.TransactionID = Convert.ToInt32(values[1]);
-              transaction.User = CS.GetUser(values[2]);
+              transaction.User = user;
               transaction.Product = CS.GetProduct(values[3]);
               transaction.Price = Convert.ToInt32(values[5]);
               transaction.Date = Convert.ToDateTime(values[6]);
@@ -48,12 +48,13 @@ namespace OOPEksamen2015
       }
       reader.Close();
 
-      return transactionList;
+      return SortDescending(transactionList);
     }
 
-    public List<InsertCashTransaction> GetCashList()
+    public List<InsertCashTransaction> GetCashList(User user)
     {
       List<InsertCashTransaction> transactionList = new List<InsertCashTransaction>();
+      Stregsystem CS = new Stregsystem();
       int i = 0;
 
       checkCreateTransactionList();
@@ -67,13 +68,12 @@ namespace OOPEksamen2015
         // Skipping first line of the file. (This Part not taken from source!)
         if (i == 1)
         {
-          if (values[0] == "InsertCashTransaction")
+          if (values[0] == "InsertCashTransaction" && user.Equals(CS.GetUser(values[2])))
           {
             InsertCashTransaction transaction = new InsertCashTransaction();
-            Stregsystem CS = new Stregsystem();
 
             transaction.TransactionID = Convert.ToInt32(values[1]);
-            transaction.User = CS.GetUser(values[2]);
+            transaction.User = user;
             transaction.Amount = Convert.ToInt32(values[4]);
             transaction.Date = Convert.ToDateTime(values[6]);
 
@@ -132,7 +132,7 @@ namespace OOPEksamen2015
       }
       reader.Close();
 
-      return transactionList;
+      return SortDescending(transactionList);
     }
 
     public bool AddBuyTransaction(BuyTransaction transaction)
@@ -190,17 +190,11 @@ namespace OOPEksamen2015
       return transactionList.Count+1;
     }
 
+    private List<BuyTransaction> SortDescending(List<BuyTransaction> transactionList)
+    {    
+	    transactionList.Sort((a, b) => b.CompareTo(a));
 
-    private bool CheckIfNumber(string str)
-    {
-      int productID = 0;
-
-      if (int.TryParse(str, out productID))
-      {
-        return true;
-      }
-      return false;
+	    return transactionList;
     }
-
   }
 }

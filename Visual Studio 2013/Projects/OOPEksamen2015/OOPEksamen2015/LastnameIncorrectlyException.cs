@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OOPEksamen2015
+{
+  class LastnameIncorrectlyException : Exception
+  {
+
+    public LastnameIncorrectlyException()
+    {
+    }
+
+    public LastnameIncorrectlyException(string message) : base(message)
+    {
+    }
+
+    public LastnameIncorrectlyException(string message, Exception inner)
+      : base(message, inner)
+    {
+    }
+
+  }
+}

@@ -103,7 +103,7 @@ namespace OOPEksamen2015
 
     }
 
-    public int NewUserID(User newUser)
+    public int NewUserID()
     {
       return GetList().Count+1;
     }

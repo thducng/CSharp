@@ -13,24 +13,31 @@ namespace OOPEksamen2015
 
     void DisplayUserInfo(User user, List<BuyTransaction> transactionList);
 
-    void DisplayTooManyArgumentsError();
-
     void DisplayCommandNotFoundMessage();
-
+   
     void DisplayAdminCommandNotFoundMessage();
 
-    void DisplayUserBuysProduct();
+    void DisplayUserBuysProduct(User user, Product product);
 
-    void DisplayUserBuysMultipleProduct();
-
-    void Close();
+    void DisplayUserBuysMultipleProduct(User user, string amount, Product product);
 
     void DisplayInsufficientCash(User user);
 
-    void DisplayGeneralError();
+    string DisplayStartMenu(List<Product> activeProducts, List<SeasonalProduct> activeSeasonalProducts);
 
-    string DisplayStartMenu(List<Product> activeProducts);
+    void DisplayBuyTransactionHistory(List<BuyTransaction> transactionList, int number);
 
-    void DisplayAllActiveProducts(List<Product> activeProducts);
+    string DisplayCommandScreen();
+
+    void DisplayAllUsers();
+
+    void DisplaySuccessBuyTransaction(User user, Product product);
+
+    void DisplaySuccessCashTransaction(User user, int amount);
+
+    void DisplayLowBalance(User user, Product product);
+
+    void DisplayAmountError();
+
   }
 }

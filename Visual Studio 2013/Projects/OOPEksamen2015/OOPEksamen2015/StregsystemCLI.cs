@@ -49,11 +49,6 @@ namespace OOPEksamen2015
       
     }
 
-    public void DisplayTooManyArgumentsError()
-    {
-      throw new NotImplementedException();
-    }
-
     public void DisplayCommandNotFoundMessage()
     {
       Console.WriteLine("Entered command was invalid");
@@ -64,24 +59,19 @@ namespace OOPEksamen2015
       Console.WriteLine("Entered admin command was invalid");
     }
 
-    public void DisplayUserBuysProduct()
+    public void DisplayUserBuysProduct(User user, Product product)
     {
-      throw new NotImplementedException();
+      Console.WriteLine("\nTransaction was succesful, {0} has bought {1} for {2} DKK", user.Username, product.Name, product.Price);
     }
 
-    public void DisplayUserBuysMultipleProduct()
+    public void DisplayUserBuysMultipleProduct(User user, string amount, Product product)
     {
-      throw new NotImplementedException();
-    }
-
-    public void Close()
-    {
-      throw new NotImplementedException();
+      Console.WriteLine("\nTransaction was succesful, {0} has bought {1} x {2} for {3} DKK each", user.Username, amount ,product.Name, product.Price);
     }
 
     public void DisplayInsufficientCash(User user)
     {
-      Console.WriteLine(String.Format("User {0} has insuffiecient credits, transaction declined!", user.Username));
+      Console.WriteLine(String.Format("\nUser {0} has insuffiecient credits, transaction declined!", user.Username));
     }
 
     public void DisplayGeneralError()
@@ -89,21 +79,21 @@ namespace OOPEksamen2015
       throw new NotImplementedException();
     }
 
-    public string DisplayStartMenu(List<Product> activeProducts)
+    public string DisplayStartMenu(List<Product> activeProducts, List<SeasonalProduct> activeSeasonalProducts)
     {
       Console.Clear();
       Console.WriteLine("Welcome to OOP 2015 Exam Assignment,\nThis is Stregsystem ready to take your command!");
       Console.WriteLine("____________________________________________________\n");
       Console.WriteLine("These are the current active products: \n");
 
-      DisplayAllActiveProducts(activeProducts);
+      DisplayAllActiveProducts(activeProducts, activeSeasonalProducts);
 
       Console.WriteLine("\n____________________________________________________");
       Console.Write("\nEnter Command: ");
       return Console.ReadLine();
     }
 
-    public void DisplayAllActiveProducts(List<Product> activeProducts)
+    public void DisplayAllActiveProducts(List<Product> activeProducts, List<SeasonalProduct> activeSeasonalProducts)
     {
       if (activeProducts.Count == 0)
       {
@@ -116,11 +106,25 @@ namespace OOPEksamen2015
           Console.WriteLine(String.Format("ProductID: {0} Name: {1} Price: {2} DKK", product.ProductID, product.Name, product.Price));
         }
       }
+
+      if (activeSeasonalProducts.Count == 0)
+      {
+        Console.WriteLine("\nNo Active Seasonal Products ATM");
+      }
+      else
+      {
+        Console.WriteLine("\n-------------- Active Seasonal Products --------------\n");
+        foreach (SeasonalProduct seasonalProduct in activeSeasonalProducts)
+        {
+          Console.WriteLine(String.Format("ProductID: {0} Name: {1} Price: {2} DKK until {3}. Month", seasonalProduct.ProductID, seasonalProduct.Name, seasonalProduct.Price, seasonalProduct.SeasonEndDate.Month));
+        }
+      }
+
     }
 
     public void DisplayBuyTransactionHistory(List<BuyTransaction> transactionList, int number)
     {
-      for(int i = 0; i < transactionList.Count; i++)
+      for(int i = 0; i < transactionList.Count && i < 10; i++)
       {
         Console.WriteLine("\n{0} - TransactionID: {1}", (i+1).ToString("D2"), transactionList[i].TransactionID);
         Console.WriteLine("   - Product: {0} ", transactionList[i].Product.Name);
@@ -155,8 +159,9 @@ namespace OOPEksamen2015
         Console.Write("Lastname: ");
         lastname = Console.ReadLine();
 
-        if (newUser.UserFirstLastNameValidation(username, firstname, lastname))
+        try
         {
+          newUser.UserFirstLastNameValidation(username, firstname, lastname);
           Console.WriteLine("\nBelow is not required, but can be useful at times,\nwrite the number and your information: \n");
           Console.WriteLine("1 - Email: example@domain.com \n2 - Birthday: 24/12/2014\n");
           Console.Write("You can choose to enter information, or write d for done: ");
@@ -166,20 +171,100 @@ namespace OOPEksamen2015
             information = Console.ReadLine();
             if (!newUser.Information(information))
             {
-              done = true;
+              if (information == "d")
+                done = true;
+              else
+                Console.WriteLine("Incorrectly entered, try again example: 1 example@domain.com");
+            }
+            else
+            {
+              if (information[0] == '1')
+              {
+                Console.WriteLine("Email Added! Enter more information or d for done");
+              }
+              else
+              {
+                Console.WriteLine("Birthday Added! Enter more information or d for done");
+              }
             }
           } while (done == false);
         }
-        else
+        catch(UsernameExistException)
         {
-          Console.WriteLine("User-, First- and Lastname is incorrectly, press something to try again");
-          Console.ReadKey();
+          Console.WriteLine("Username already exist, press any for try again or q for quit");
+        }
+        catch(UsernameIncorrectlyException)
+        {
+          Console.WriteLine("Username is incorrectly, press any for try again or q for quit");
+        }
+        catch(FirstnameIncorrectlyException)
+        {
+           Console.WriteLine("Firstname is incorrectly, press any for try again or q for quit");
+        }
+        catch (LastnameIncorrectlyException)
+        {
+          Console.WriteLine("Lastname is incorrectly, press any for try again or q for quit");
+        }
+
+        if (!done)
+        {
+          ConsoleKeyInfo cki = Console.ReadKey();
+
+          if (cki.Key.ToString() == "Q")
+          {
+            throw new System.ArgumentException("Quit");
+          }
         }
 
       } while (done == false);
 
       Console.WriteLine("User {0} is succesfully created!", newUser.Username);
       return newUser;
+    }
+
+    public SeasonalProduct DisplaySeasonalProductCreation()
+    {
+      SeasonalProduct newProduct = new SeasonalProduct();
+      string name, price, startdate, enddate;
+      bool done = false;
+
+      do
+      {
+        Console.Clear();
+        Console.WriteLine("Please write new product information:");
+        Console.Write("Name: ");
+        name = Console.ReadLine();
+        Console.Write("Price: ");
+        price = Console.ReadLine();
+        Console.Write("StartDate (mm): ");
+        startdate = Console.ReadLine();
+        Console.Write("EndDate (mm): ");
+        enddate = Console.ReadLine();
+
+        try
+        {
+          newProduct.newSeasonalProduct(name, price, startdate, enddate);
+          done = true;
+        }
+        catch (Exception)
+        {
+          Console.WriteLine("Incorrectly entered!, press any to try again or q for quit");
+        }
+
+        if (done == false)
+        {
+          ConsoleKeyInfo cki = Console.ReadKey();
+
+          if (cki.Key.ToString() == "Q")
+          {
+            throw new System.ArgumentException("Quit");
+          }
+        }
+
+      } while (done == false);
+
+      Console.WriteLine("\nSeasonalProduct {0} is succesfully created!\nStarts {1}. Month and ends {2}. Month\n", newProduct.Name, newProduct.SeasonStartDate.Month, newProduct.SeasonEndDate.Month);
+      return newProduct;
     }
 
     public void DisplayAllUsers()
@@ -199,7 +284,7 @@ namespace OOPEksamen2015
 
     public void DisplaySuccessBuyTransaction(User user, Product product)
     {
-      Console.WriteLine("\nTransaction was succesful, {0} has bought {1} for {2} DKK", user.Username, product.Name, product.Price);
+      
     }
 
     public void DisplaySuccessCashTransaction(User user, int amount)
@@ -213,7 +298,10 @@ namespace OOPEksamen2015
       Console.WriteLine("\nWARNING: {0} has a balance of {1} DKK", user.Username, user.Balance);
     }
 
-
+    public void DisplayAmountError()
+    {
+      Console.WriteLine("\nThe amount part wasnt entered correctly,\nExample: 'username' 'amount' 'product'");
+    }
 
     #endregion
 

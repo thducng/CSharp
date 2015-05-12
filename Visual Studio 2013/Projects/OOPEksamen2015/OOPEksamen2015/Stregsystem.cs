@@ -31,6 +31,42 @@ namespace OOPEksamen2015
       }
     }
 
+    public bool BuyMultipleProducts(User user, string _amount, Product product)
+    {
+      BuyTransaction newTransaction = new BuyTransaction();
+      newTransaction.User = user;
+      newTransaction.Product = product;
+      int amount;
+
+      try
+      {
+        if (AmountValidation(_amount, out amount))
+        {
+          if ((user.Balance - product.Price * amount) < 0)
+          {
+            throw new InsufficientCreditsException();
+          }
+          for (int i = 0; i < amount; i++)
+          {
+            ExecuteTransaction(newTransaction);
+          }
+        }
+        else
+        {
+          throw new ArgumentException("Amount isnt a number");
+        }
+        if (newTransaction.User.isLowBalance())
+        {
+          return false; // Hvis denne metode retunere false = low balance, but successful
+        }
+        return true; // Hvis denne metode retunere true = succesful
+      }
+      catch (InsufficientCreditsException)
+      {
+        throw new InsufficientCreditsException(); // hvis denne exception bliver kastet, unsuccessful
+      }
+    }
+
     public void AddCreditsToAccount(User user, int amount)
     {
       InsertCashTransaction newTransaction = new InsertCashTransaction();
@@ -93,19 +129,19 @@ namespace OOPEksamen2015
         }
       }
 
-      throw new System.ArgumentException("The entered username, is not in the database of usernames");
+      throw new UserNotFoundException();
     }
 
-    public List<BuyTransaction> GetBuyTransactionList()
+    public List<BuyTransaction> GetBuyTransactionList(User user)
     {
       TransactionsList transactionList = new TransactionsList();
-      return transactionList.GetBuyList();
+      return transactionList.GetBuyList(user);
     }
 
-    public List<InsertCashTransaction> GetCashTransactionList()
+    public List<InsertCashTransaction> GetCashTransactionList(User user)
     {
       TransactionsList transactionList = new TransactionsList();
-      return transactionList.GetCashList();
+      return transactionList.GetCashList(user);
     }
 
     public List<BuyTransaction> GetTransactionList()
@@ -116,10 +152,18 @@ namespace OOPEksamen2015
 
     public bool CreateNewUser(User newUser)
     {
-      UsersList users = new UsersList();
-      newUser.UserID = users.NewUserID(newUser);
+      UsersList usersList = new UsersList();
+      newUser.UserID = usersList.NewUserID();
 
-      return users.AddNewUser(newUser);
+      return usersList.AddNewUser(newUser);
+    }
+
+    public bool CreateNewSeasonalProduct(SeasonalProduct newSeasonalProduct)
+    {
+      SeasonProductCatalog seasonalProductList = new SeasonProductCatalog();
+      newSeasonalProduct.ProductID = seasonalProductList.NewSeasonalProductID();
+
+      return seasonalProductList.AddNewSeasonalProduct(newSeasonalProduct);
     }
 
     public List<Product> GetActiveProducts()
@@ -138,6 +182,24 @@ namespace OOPEksamen2015
       return activeProducts;
     }
 
+    public List<SeasonalProduct> GetSeasonalProducts()
+    {
+      List<SeasonalProduct> activeProducts = new List<SeasonalProduct>();
+      SeasonProductCatalog seasonalProductCatalog = new SeasonProductCatalog();
+
+      foreach (SeasonalProduct seasonalProduct in seasonalProductCatalog.GetList())
+      {
+        seasonalProduct.Activate();
+
+        if (seasonalProduct.Active)
+        {
+          activeProducts.Add(seasonalProduct);
+        }
+      }
+
+      return activeProducts;
+    }
+
     #endregion
 
     private bool BuyProductValidation(string command, out int productID)
@@ -145,6 +207,15 @@ namespace OOPEksamen2015
       string[] commandSplit = command.Split(' ');
 
       if (int.TryParse(commandSplit[commandSplit.Length - 1], out productID))
+      {
+        return true;
+      }
+      return false;
+    }
+
+    private bool AmountValidation(string _amount, out int amount)
+    {
+      if (int.TryParse(_amount, out amount))
       {
         return true;
       }
