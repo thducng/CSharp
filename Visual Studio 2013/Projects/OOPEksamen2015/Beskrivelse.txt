@@ -1,0 +1,63 @@
+Beskrivelse til OOP Eksamen 2015 Thuan Duc Nguyen
+
+STATUS: Vil mene jeg blev færdig med alle kravene, så jeg tilføjede mere til.
+
+Jeg har valgt ikke at afvige alt for meget fra opgavebeskrivelsen.
+
+Navnene på metoder og klasser er tildels vedligeholdt.
+Der er tilføjet op til flere klasser og metoder som jeg selv syntes
+passede til programmets funktionalitet.
+
+Alle Klasser har endten kommentarer med lille beskrivelse, ellers
+er de katagoriseret ved brug af "regions".
+
+Inde i projektmappen, er der mapper som indeholder alle .cs filer
+samt filerne med data som ligger ind under mappen "Logs".
+
+Der er taget udgangspunkt i at man altid har product.csv filen, i
+projektet er den omdøbt til ProductCatalog.csv.
+
+Filer som UsersList, TransactionsList og SeasonalProductCatalog,
+kan lave sig selv, dog hvis man sletter en af dem, KAN der opstå
+problemer hvis den ene liste bruger noget fra den anden, derfor
+hvis man sltter den ene så sletter man alle tre.
+
+Selve programmet har følgende kommandoer:
+-------------------------------------------------
+ADMIN
+-------------------------------------------------
+:q - uden parameter
+:quit - uden parameter
+:activate - 1 parameter(productID)
+:deactivate - 1 parameter(productID)
+:crediton - 1 parameter(productID)
+:creditoff - 1 parameter(productID)
+:addcredits - 2 parameter(username, amount)
+-------------------------------------------------
+:newuser - uden paramter(Tilføjer)
+:newseasonalproduct - uden parameter(Tilføjer)
+:userlist - udenparameter(Giver liste over users)
+-------------------------------------------------
+BASICS
+-------------------------------------------------
+Single parameter -> UserInformation
+Double parameter -> BuySingleProduct
+Triple Parameter -> BuyMultipleProduct
+
+Single parameter - (username)
+Double parameter - (username, productID)
+Triple parameter - (username, amount, productID)
+--------------------------------------------------
+-------------------------------------------------
+Kilder brugt til programmet(Kode inspiration, hjælp til implementation):
+http://stackoverflow.com/questions/2890040/implementing-gethashcode
+http://stackoverflow.com/questions/5282999/reading-csv-file-and-storing-values-into-an-array
+http://softwaretipz.com/c-sharp-code-to-create-a-csv-file-and-write-data-into-it/
+http://www.dotnetperls.com/sort-datetime
+http://stackoverflow.com/questions/3033771/file-io-with-streams-best-memory-buffer-size
+
+
+
+
+
+
