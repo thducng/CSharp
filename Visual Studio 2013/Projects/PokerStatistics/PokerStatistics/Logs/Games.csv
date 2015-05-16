@@ -1,0 +1,34 @@
+GameID;Type;Name;BuyIn;CashOut;Profit;Result;StartTime;EndTime;Active
+1;Tournament;PS Tour NLHE Turbo;2,2;0;-2,2;Loss;07-05-2015 10:50:00;07-05-2015 11:15:00;1
+2;Tournament;PS Tour NLHE Turbo;0,55;0;-0,55;Loss;07-05-2015 11:20:00;07-05-2015 11:37:00;True
+3;Tournament;PS Tour NLHE Turbo;0,82;0;-0,82;Loss;07-05-2015 11:40:00;07-05-2015 12:12:00;True
+4;Tournament;RUI Tour 5cPLO;4,4;13,46;9,06;Win;07-05-2015;07-05-2015;True
+5;Cash Game;0.01/0.02 PLO;1,41;0;-1,41;Loss;07-05-2015;07-05-2015;True
+6;Tournament;PS Tour NLHE Bubble Dash;1,1;0;-1,1;Loss;07-05-2015;07-05-2015;True
+7;Cash Game;0.01/0.02 PLO;2;2,15;0,15;Win;08-05-2015;08-05-2015;True
+8;Tournament;PS Tour NLHE Turbo;1,1;0;-1,1;Loss;08-05-2015;08-05-2015;True
+9;Tournament;PS Tour NLHE Turbo;1,1;0;-1,1;Loss;08-05-2015;08-05-2015;True
+10;Tournament;PS Tour NLHE Turbo;0,27;0;-0,27;Loss;08-05-2015;08-05-2015;True
+11;Cash Game;0.01/0.02 NLHE;3,99;4,43;0,44;Win;08-05-2015;08-05-2015;True
+12;Tournament;PS Tour NLHE Turbo;0,27;0;-0,27;Loss;08-05-2015;08-05-2015;True
+13;Cash Game;0.01/0.02 NLHE Zoom;4;8;4;Win;09-05-2015;09-05-2015;True
+14;Cash Game;0.01/0.02 NLHE Zoom;4;0;-4;Loss;10-05-2015;10-05-2015;True
+15;Tournament;PS Tour NLHE Turbo;1,1;0,66;-0,44;Loss;11-05-2015;10-05-2015;True
+16;Cash Game;0.01/0.02 PLO;1,6;0;-1,6;Loss;12-05-2015;12-05-2015;True
+17;Cash Game;0.01/0.02 NLHE;2;0;-2;Loss;12-05-2015;12-05-2015;True
+18;Tournament;PS Tour NLHE Turbo;1,35;1,88;0,53;Win;13-05-2015;13-05-2015;True
+19;Tournament;PS Tour NLHE Turbo;0,02;0;-0,02;Loss;13-05-2015;13-05-2015;True
+20;Tournament;PS Tour NLHE Time: 15min;1,1;2,17;1,07;Win;13-05-2015;13-05-2015;True
+21;Tournament;PS Tour NLHE Turbo;0,11;0;-0,11;Loss;13-05-2015;13-05-2015;True
+22;Tournament;PS Tour NLHE Turbo;0,27;0,30;0,03;Win;13-05-2015;13-05-2015;True
+23;Tournament;PS Tour NLHE Time: 30min;1,1;0;-1,1;Loss;13-05-2015;13-05-2015;True
+24;Tournament;PS Tour NLHE Time: 15min;1,1;1,39;0,29;Win;13-05-2015;13-05-2015;True
+25;Tournament;PS Tour NLHE/PLO;0,55;0;-0,55;Loss;13-05-2015;13-05-2015;True
+26;Cash Game;0.01/0.02 NLHE Zoom;2;2,11;0,11;Win;13-05-2015;13-05-2015;True
+27;Cash Game;0.02/0.05 NLHE Zoom;5;10,37;5,37;Win;13-05-2015;13-05-2015;True
+28;Cash Game;0.02/0.05 NLHE Zoom;5;6,39;1,39;Win;14-05-2015;14-05-2015;True
+29;Cash Game;0.02/0.05 NLHE Zoom;5,5;0;-5,5;Loss;14-05-2015;14-05-2015;True
+30;Cash Game;0.02/0.05 NLHE Zoom;6,5;8,45;1,95;Win;14-05-2015;14-05-2015;True
+31;Cash Game;0.02/0.05 NLHE Zoom;4;6,93;2,93;Win;14-05-2015;14-05-2015;True
+32;Tournament;PS Tour NLHE Turbo;0,11;0;-0,11;Loss;15-05-2015;15-05-2015;True
+33;Tournament;PS Tour NLHE Turbo;0,27;0;-0,27;Loss;15-05-2015;15-05-2015;True
