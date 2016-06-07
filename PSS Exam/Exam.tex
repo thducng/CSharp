@@ -1,0 +1,240 @@
+\documentclass{report}
+
+\begin{document}
+
+\chapter{Definitions}
+\section{What is a Process?}
+The definition of a process is that, it is the environment a program is executed in. A process is a running program with all of its concomitant data. It is like a virtual machine, BUT with limited acces to e.g. the processor and I/O devices. It is also isolated from other processes.
+
+\section{What is an Operating System(OS)?}
+A operating system can be seen as three things, an application manager, a resource manager and an abstraction. 
+\\
+As a application manager its primary task is to run programs, it should maximise the performance of the running programs, that can be executed sequentially or concurrently.
+\\
+As a resource manager its primary resource is the execution of the CPU. It manages the external devices, like disks, printers, networks and etc. It has support for development, which means that it can provide libraries for common resources, and also has support for advanced features like sharing and IPC.
+\\
+As an abstraction means that every process has its own machine, isolated from other machines (processes), it supports development with high level APIs/libraries and has a uniform representation of resources.
+
+\section{What is a Process Image?}
+A process image is a collection of process related data, which are the PCB(process control block) and the program(which is the executable machine code), the stack and the heap.
+
+\section{What is a Process Control Block?}
+A Process control block is for saving the data of each process. The block contains the PC(Program Counter), memory pointers, context data(its registers) and the I/O status. It also has State and Priority for managing the saved processes.(identifier?)
+
+
+\chapter{Processes and Threads}
+\section{Keywords}
+\begin{itemize}
+\item Definition of process/thread
+\item Process-/thread-control block
+\item 7 state process model
+\item Process creation
+\item Process image
+\item Process/thread switching
+\item Multi-threading
+\item P-threads
+\end{itemize}
+\newpage
+\section{Learning Goals}
+\begin{itemize}
+\item ... can define and explain the concept of a process
+\item ... can explain what a process image is
+\item ... can explain what a process control block, what it is used for and why it is needed
+\item ... can explain, in general terms, how process creation, switching and termination works
+\item ... can define and discuss process states
+\end{itemize}
+\section{What is a Process?}
+The definition of a process is that, it is the environment a program is executed in. A process is a running program with all of its concomitant data. It is like a virtual machine, BUT with limited access to e.g. the processor and I/O devices. It is also isolated from other processes.
+
+\section{What is a Process Image?}
+A process image is a collection of process related data, which are the PCB(process control block) and the program(which is the executable machine code), the stack and the heap.
+
+\section{What is a Process Control Block?}
+A Process control block is for saving the data of each process. The block contains the PC(Program Counter), memory pointers, context data(its registers) and the I/O status. It also has State and Priority for managing the saved processes.(identifier?)
+\newpage
+\section{Creation, switching and termination}
+A process is created upon login, spawned by other processors or when a new job is started by the OS or User.
+\\
+A process is terminated when the program is completed, or there is an error condition like a invalid instruction or arithmetic errors, or there is a lack of resources like memory. It can also be terminated from request by its parent or a parent termination.
+\\\\
+Switching from processor to processor, is relatively easy. Save the relevant data from the current processor into a PCB, and re-instate the relevant data for the old processor. Relevant data is Status registers like PC(program counter), SP, PSW etc., Data registers like EAX, memory pointers for code and data etc. and the I/O status.
+\\
+The OS maintains the processors and linking it them with the PCBs. Since a I/O operations takes a lot of time to finish, in the mean time another process can execute. So when do the processor switch back, when the OS regains control, OS regains control when, there is an interrupt like, Clock interrupt I/O, interrupt or memory fault. It can also regain control through system calls or errors(traps).
+
+\section{Processor states(in PCB)}
+\begin{itemize}
+\item Waiting
+\item Ready
+\item Suspended
+\item Ready/Suspended
+\item Blocked/Suspended
+\end{itemize}
+
+\section{What is a Thread?}
+The definition of a thread is an executable part of a process, or the smallest executable part of a processor.
+
+\section{Multi-Threading}
+
+
+\chapter{Concurrency}
+
+\section{Keywords}
+\begin{itemize}
+\item Multi-threading
+\item Implementation strategies for concurrency
+\item Concurrency versus parallelism
+\item Inter-process communication
+\item Race condition
+\item Mutual exclusion
+\item Ensuring mutual exclusion
+\begin{itemize}
+\item Algorithms
+\item Hardware supported
+\item Mutexes
+\item Semaphores
+\item Monitors
+\end{itemize}
+\item Relative time
+\item P-thread
+\end{itemize}
+\newpage
+\section{Algorithms}
+Dekker's Algorithm works, efficient when blocking is not needed.
+\\
+Peterson's Algorithm works, scales to more processors, still generally inefficient, guarantees fairness.
+\\
+
+\chapter{Deadlocks and Deadlock Handling}
+
+\section{Keywords}
+\begin{itemize}
+\item Definition of deadlock
+\item Mutual exclusion
+\item Ensuring mutual exclusion
+\begin{itemize}
+\item Algorithms
+\item Hardware supported
+\end{itemize}
+\item Resource allocation graph
+\item Coffman's condition
+\item Solution strategies
+\begin{itemize}
+\item Prevention
+\item Avoidance
+\item Detection and recovery
+\end{itemize}
+\item How to achieve deadlock prevetion (breaking coffmans conditions)
+\item Safe states and deadlock avoidance
+\item Banker's algorithm
+\item Deadlock detection and recovery
+\item Priority inversion
+\end{itemize}
+\newpage
+\chapter{Memory Management}
+
+\section{Keywords}
+\begin{itemize}
+\item Memory hierarchy
+\item Challenge in managing memory for an OS
+\item Physical versus logical versus virtual addresses
+\item Simple static allocation
+\item Simple dynamic allocation
+\item (Simple) Paged memory
+\item Shared memory
+\item Implementing paged memory (page tables)
+\end{itemize}
+\newpage
+\chapter{Memory Management(Virtual Memory, Page Replacement)}
+
+\section{Keywords}
+\begin{itemize}
+\item Challenges in memory management
+\item Virtual memory
+\item Fetch policy
+\item Placement policy
+\item Page replacement policy
+\item Frame allocation
+\end{itemize}
+\newpage
+\chapter{File Systems}
+
+\section{Keywords}
+\begin{itemize}
+\item Definition of file systems
+\item Functionality
+\item Purpose of a file system
+\item Name space organisation
+\item Inodes and links
+\begin{itemize}
+\item Hard
+\item Symbolic
+\end{itemize}
+\item Disk block allocation
+\item Virtual file systems
+\item (Harddisk) I/O scheduling
+\end{itemize}
+\newpage
+\chapter{I/O, System Calls, Device Drivers}
+
+\section{Keywords}
+\begin{itemize}
+\item Types of I/O
+\begin{itemize}
+\item Programmed
+\item Interrupt-driven
+\item DMA
+\end{itemize}
+\item Implementation of I/O (as system calls)
+\item Definition and implementation of system call
+\item Definition and purpose of device drivers
+\item Types of device drivers
+\begin{itemize}
+\item Block
+\item Characters
+\end{itemize}
+\item Device driver implementation
+\item I/O scheduling (I/O manager)
+\end{itemize}
+\newpage
+\chapter{Scheduling}
+
+\section{Keywords}
+\begin{itemize}
+\item Interrupts
+\begin{itemize}
+\item Definition
+\item Purpose
+\item Implementation
+\end{itemize}
+\item Definition of and goals for scheduling
+\item Scheduling policies for different systems types
+\begin{itemize}
+\item Batch
+\item Interactive
+\item Real-time
+\end{itemize}
+\end{itemize}
+\newpage
+\chapter{Security}
+
+\section{Keywords}
+\begin{itemize}
+\item CIA-triad
+\begin{itemize}
+\item Definition
+\item Explanation
+\item Purpose
+\end{itemize}
+\item OS security
+\begin{itemize}
+\item Process isolation
+\item Strong memory management
+\item Permissions
+\end{itemize}
+\item Application/Software security
+\begin{itemize}
+\item Common security vulnerabilities in C/Java/C\# etc.
+\end{itemize}
+\end{itemize}
+\newpage
+\end{document}

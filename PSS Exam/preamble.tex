@@ -1,0 +1,126 @@
+\usepackage{graphicx}            %to include pictures%
+\usepackage[hidelinks]{hyperref} %adds clickable references etc.%
+\usepackage{url}
+\usepackage{etoolbox} %something with renewcommand
+\usepackage{fancyhdr} % package for fancy header and fooder
+\usepackage{nameref} % currentname 
+\usepackage{titlesec}            %creates title section%
+\usepackage[utf8]{inputenc}      %language utf8 = DK%
+\usepackage{amsmath,amsfonts,amssymb} % adds different fonts and symbols e.g: celsius symb %
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes.gates.logic.US,shapes.gates.logic.IEC,calc}
+
+%This packge allows us to include video files
+\usepackage{animate}
+
+\usepackage[backend=bibtex,style=numeric-comp]{biblatex} % biblatex - bibliography tool %
+\usepackage{etoolbox} % LaTeX programming - creating Macros %
+\usepackage{pdfpages} % adds \includepdf %
+\usepackage{listings} % adds Source Code inclusion %
+\usepackage{color}    % adds colored text - for e.g Listings %
+\usepackage{xcolor}   % adds colored text - for e.g Listings %
+\usepackage{gensymb}  % extra symbols %
+\usepackage{geometry}
+\usepackage{float}
+%\usepackage{showframe}
+\usepackage{lastpage}
+\usepackage{tgtermes}% needed because of QX encoding
+\usepackage{tgcursor}
+\usepackage[QX]{fontenc}
+\newcommand*{\myfont}{\fontfamily{qag}\selectfont}
+
+\usepackage{booktabs} % This package provide some additional commands to enhance
+					  % the quality of tables in LaTeX. Guidelines are given as
+					  % to what constitutes a good table in this context. 
+\usepackage{float}    % This package improves the interface for defining floating objects such
+					  %as figures and tables in LaTeX %
+\usepackage{placeins} %De­fines a \FloatBar­rier com­mand, be­yond which floats may not pass; use­ful, 							  %for ex­am­ple, to en­sure all floats for a sec­tion ap­pear be­fore the next 
+					  %\sec­tion com­mand.
+\usepackage{multirow} % Tabulator changes %
+\usepackage{wrapfig,lipsum} %wrapping figures
+\usepackage{array} %arrays duh (table specific i think)
+\usepackage{tabularx} %extra tabel options.
+\usepackage{rotating} %rotatos in pepperonis
+\usepackage{lscape} %landscape
+\usepackage{colortbl} %add colors to table cells
+\usepackage{opensans}% font
+\defbibheading{secbib}[\bibname]{% % secbib : adding bibliography %
+  \chapter{References}%
+  \markboth{#1}{#1}}
+%\addbibresource{mybib/sources.bib}
+
+\lstdefinestyle{sharpc}{
+ language=[Sharp]C,
+ showspaces=false,
+ showtabs=false,
+ breaklines=true,
+ showstringspaces=false,
+ breakatwhitespace=true,
+ escapeinside={(*@}{@*)},
+ commentstyle=\color{green},
+ keywordstyle=\color{blue},
+ stringstyle=\color{orange},
+ basicstyle=\ttfamily,
+ numberstyle=\small\color{black},
+ numbers=left, % where to put the line-numbers
+ numbersep=6pt,
+ tabsize=2,
+ frame=single,
+ identifierstyle=\color{black},
+ inputencoding=utf8,
+ xleftmargin=-30pt,
+ xrightmargin=-30pt,
+ extendedchars=true,
+ literate={ø}{{\oe}}1 {é}{{\'e}}1 {//vdots//}{{\vdots}}1
+}
+\lstdefinelanguage{XML}
+{
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  showstringspaces=false,
+  commentstyle=\color{gray}\upshape ,
+  morestring=[b]",
+  breaklines=true,
+  morestring=[s]{>}{<},
+  morecomment=[s]{<?}{?>},
+  stringstyle=\color{black},
+  identifierstyle=\color{blue},
+  keywordstyle=\color{cyan},
+  xleftmargin=-30pt,
+  xrightmargin=-30pt,
+  morekeywords={xmlns,version,type}% list your attributes here
+}
+
+% fonts
+\usepackage{quattrocento}
+\usepackage[T1]{fontenc}
+
+% for moving chapter start
+\titleformat{\chapter}[display]{\Huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titleformat{\chapter}{\Huge\bfseries}{\chaptername\ \thechapter}{0pt}{\vskip 20pt\raggedright}%
+% for moving chapter end
+
+\footskip = 100pt %footer in the bottem
+
+% title format for chapter, section and subsection
+\titleformat{\chapter}{\usefont{T1}{fos}{m}{n}\Huge}{\thechapter.}{20pt}{\huge}[
+\vspace{-0.7cm}
+\rule{\textwidth}{1pt}
+]
+\titlespacing{\chapter}{0pt}{0pt}{5pt}
+
+\titleformat*{\section}{\bfseries{\usefont{T1}{fos}{m}{n}}\Large}
+\titlespacing{\section}{0pt}{0pt}{5pt}
+
+\titleformat*{\subsection}{\bfseries{\usefont{T1}{fos}{m}{n}}\large}
+\titleformat*{\subsubsection}{\bfseries{\usefont{T1}{fos}{m}{n}}}
+
+
+
+% fonts
+\usepackage{quattrocento}
+\usepackage[T1]{fontenc}
+
+% toc
+
+\AtBeginDocument{\addtocontents{toc}{\protect\thispagestyle{plain}}} 
